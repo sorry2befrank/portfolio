@@ -158,16 +158,16 @@
   <section class="panel active" id="working" role="tabpanel">
     <span class="eyebrow kicker">Systems Integrator · Governed &amp; Observable AI</span>
     <h1>I build governed AI systems — and I run my own operation on <em>one of them</em>.</h1>
-    <p class="lead"><strong>I don't just build AI systems for clients; I run my own studio on one I built.</strong> Three layers: an atlas that maps the operation and names where each workflow breaks, a console where I decide, and an engine that does bounded work. It is built so that consequential actions wait for a human, and the console's inability to send or deploy is checked by an automated test.</p>
+    <p class="lead"><strong>I don't just build AI systems for clients; I run my own studio on one I built.</strong> Three layers: an atlas that maps the operation and names where each workflow breaks, a console where I decide, and an engine that does bounded work. It is built so that consequential actions wait for a human, and my agency console's inability to send or deploy is checked by an automated test that scans its runtime source.</p>
 
     <figure class="hero-shot">
-      <img src="img/atlas-systemmap.png" alt="The Orrery System Atlas — a live system map of 56 components across 8 layers, with 10 governed end-to-end workflows and per-component state." loading="lazy" />
-      <figcaption>The Orrery System Atlas — 56 components, 8 layers, 10 governed flows, each tied to durable evidence. The observability layer of the system I run my work on.</figcaption>
+      <img src="img/atlas-systemmap.png" alt="The Orrery System Atlas — a live system map of 56 components across 8 layers, with 11 governed end-to-end workflows and per-component state." loading="lazy" />
+      <figcaption>The Orrery System Atlas — 56 components, 8 layers, 11 governed flows, each tied to durable evidence. The observability layer of the system I run my work on.</figcaption>
     </figure>
 
     <figure class="hero-shot" style="margin-top:22px;">
       <img src="img/flows-break.png" alt="The diagnosis view — each governed workflow shown as verified end-to-end or unproven at a specific step, with the evidence source and the next check." loading="lazy" />
-      <figcaption>Where the flows break — the diagnosis engine names the first unproven step in each workflow (e.g. "unproven at release-control"), cites the evidence, and states the next check. It never marks a step "working" without a receipt.</figcaption>
+      <figcaption>Where the flows break — the diagnosis engine names the first unproven step in each workflow (the screenshot above shows one such break), cites the evidence, and states the next check. It never marks a step "working" without a receipt.</figcaption>
     </figure>
 
     <div class="triad">
@@ -180,8 +180,8 @@
       <div class="lobe">
         <span class="k">COMMAND</span>
         <h3>The Console</h3>
-        <div class="role">Governed, send-incapable ops surface</div>
-        <p>One place to see every source of truth and decide — composited through a single adapter layer, behind signed auth. It is <em>structurally incapable</em> of sending, deploying, or running a shell, and an automated test checks that. A human decides; the surface can't act by accident.</p>
+        <div class="role">Governed ops surfaces; one is send-incapable by test</div>
+        <p>One place to see every source of truth and decide — composited through a single adapter layer, behind signed auth. The agency console is <em>structurally incapable</em> of sending or deploying: an automated test scans every runtime source file and fails the build if one mentions mail transport, a child-process API, a git library, or a deploy. (The Orrery console itself can start bounded local work orders, so I do not make that claim for it.) A human decides; the surface can't act by accident.</p>
       </div>
       <div class="lobe">
         <span class="k">EXECUTE</span>
@@ -193,7 +193,7 @@
 
     <figure class="hero-shot" style="margin-top:26px;">
       <img src="img/agency-console.png" alt="The operations command console — the owner decision queue (outreach, inbound, decisions, replies) on one governed surface, structurally incapable of sending or deploying." loading="lazy" />
-      <figcaption>COMMAND — the operations console: everything that needs the owner's decision in one place, behind signed auth. Built with no send or deploy path, and tests check that — a human decides; the surface can't act.</figcaption>
+      <figcaption>COMMAND — the agency console: everything that needs the owner's decision in one place, behind signed auth. Built with no send or deploy path, and tests check that — a human decides; the surface can't act.</figcaption>
     </figure>
 
     <figure class="hero-shot" style="margin-top:22px;">
@@ -207,6 +207,7 @@
 
     <div class="cta-row">
       <a class="btn" data-goto="studio" href="#">See the production studio</a>
+      <a class="btn ghost" href="https://github.com/sorry2befrank/portfolio#readme" target="_blank" rel="noopener">Read the case studies</a>
       <a class="btn ghost" href="mailto:frank@marqueeweb.com?subject=Role%20or%20project%20inquiry">Get in touch</a>
     </div>
   </section>
