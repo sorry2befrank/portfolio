@@ -10,7 +10,7 @@ The Knowledge Library is an archive that AI clients **search and cite over MCP**
 
 ## Status, stated plainly
 
-This is a built-and-tested prototype on **synthetic data only**. It is **not deployed**. Five of its eight planned MCP tools are built. The "weekly focus cycle" that moves unneeded notes out of folders is **designed, not built**: its scheduled workflows do not exist yet.
+The **public repository** is a clean snapshot, built and tested on **synthetic data only**. A private deployment of the same system has run on Cloudflare since 2026-10-20 as a **supervised pilot**: every production step runs only from my own terminal, while I watch. Five of its eight planned MCP tools are built. The "weekly focus cycle" that moves unneeded notes out of folders is **designed, not built**: its scheduled workflows do not exist yet.
 
 ## How it works
 
@@ -28,7 +28,7 @@ This is a built-and-tested prototype on **synthetic data only**. It is **not dep
 | License | MIT |
 | Development history | 200 commits and 39 pull requests (34 merged) between 2026-10-04 and 2026-10-24, in the private development repo; the public repo is one clean snapshot |
 | Size | 421 files; about 13,300 lines of TypeScript source plus a small C# helper; about 20,300 lines of tests in 124 files |
-| CI result | **1,805 tests passed, 93 skipped (1,898 total)**, on both Linux and Windows workflows |
+| CI result | **1,805 tests passed, 93 skipped (1,898 total)** on Linux; a separate Windows workflow runs file-system conformance tests. Both green on 2026-11-20. |
 
 ## Decisions and why
 

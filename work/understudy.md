@@ -23,9 +23,9 @@ flowchart TB
 
 ## How it works
 
-- **The sweep** runs every 6 hours, one project per run. The model is given only `Read`, `Glob` and `Grep`. The other tools are *removed* from the run (not merely forbidden in a prompt), and anything else is denied by permission mode.
+- **The sweep** runs once a day (and at logon), one project per run. The model is given only `Read`, `Glob` and `Grep`. The other tools are *removed* from the run (not merely forbidden in a prompt), and anything else is denied by permission mode.
 - **The citation harness** opens every file and line the agent cites and checks the quote. **One bad citation rejects the whole report.** A report that quotes a secret is rejected and the secret is never echoed.
-- **A second agent adjudicates**, as a skeptic. It only *proposes* a verdict. A clean verdict can be recorded automatically; a false or unclear one is held for me. The rule, written in the ledger code: *the Understudy never writes its own verdict.*
+- **A second agent adjudicates** every six hours, as a skeptic. It only *proposes* a verdict. A clean verdict can be recorded automatically; a false or unclear one is held for me. The rule, written in the ledger code: *the Understudy never writes its own verdict.*
 - **Verdicts move the count.** Clean advances it, false resets it to zero, neutral (a fault in the checker, not the agent) does neither.
 - **Writes are revert-protected.** Before any attended write, a wrapper refuses a dirty repo and tags the clean state; a pre-push hook blocks every push unless I override it. What it does *not* cover (push, deploy) is written at the top of the file, which is why that run is attended.
 - **Unattended repair** gets its own rung: the model can only Read and Edit; a wrapper owns git and tests and never merges or pushes.

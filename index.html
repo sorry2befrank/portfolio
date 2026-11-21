@@ -3,8 +3,15 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Frank Epps — Systems Integrator · Governed AI Systems</title>
-<meta name="description" content="Systems integrator and full-stack engineer. I build complete, governed, observable AI systems — and I run my own operation on one: a workflow-observability atlas, a governed command console, and an autonomous execution engine. Plus a multi-model AI production studio I built from scratch." />
+<title>Frank Epps — Three Mountaintops · Systems Integrator</title>
+<meta name="description" content="Frank Epps, systems integrator. I build AI agent systems that keep a checkable record of their work, toward my north star, Three Mountaintops. Case studies with receipts and honest limits." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Frank Epps — Three Mountaintops" />
+<meta property="og:description" content="Frank Epps, systems integrator. I build AI agent systems that keep a checkable record of their work, toward my north star, Three Mountaintops. Case studies with receipts and honest limits." />
+<meta property="og:url" content="https://sorry2befrank.github.io/portfolio/" />
+<meta property="og:image" content="https://sorry2befrank.github.io/portfolio/img/og-north-star.png" />
+<meta property="og:image:alt" content="Three Mountaintops: Provision, Creative and Definition, connected by Understudy, with the Return." />
+<meta name="twitter:card" content="summary_large_image" />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
@@ -30,10 +37,13 @@
   .site .wrap { display:flex; align-items:center; gap:22px; min-height:64px; flex-wrap:wrap; }
   .wordmark { font-family:var(--mono); letter-spacing:0.30em; font-size:14px; color:var(--bone); padding-left:0.30em; }
   .tabs { display:flex; gap:6px; margin-left:auto; flex-wrap:wrap; }
-  .tab { font-family:var(--mono); font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bone-dim); background:transparent; border:1px solid transparent; padding:9px 15px; cursor:pointer; transition:color .2s ease,border-color .2s ease,background .2s ease; }
+  .tab { font-family:var(--mono); font-size:12px; letter-spacing:0.12em; text-transform:uppercase; color:var(--bone-dim); background:transparent; border:1px solid transparent; padding:9px 12px; cursor:pointer; transition:color .2s ease,border-color .2s ease,background .2s ease; }
   .tab:hover { color:var(--brass-lit); }
   .tab[aria-selected="true"] { color:var(--brass-lit); border-color:var(--hairline-lit); background:var(--ink-2); }
   @media (max-width:720px){ .site .wrap{ gap:12px; padding-top:12px; padding-bottom:10px; } .tabs{ margin-left:0; width:100%; } .tab{ flex:1 1 auto; text-align:center; padding:9px 8px; } }
+  @media (max-width:1200px){ .tabs{ gap:4px; } .tab{ letter-spacing:0.06em; padding:9px 8px; } }
+  @media (min-width:721px){ .site .wrap{ padding-top:8px; padding-bottom:8px; } }
+  @media (max-width:820px){ header.site{ position:relative; } }
 
   /* ---- tab panels ---- */
   .panel { display:none; }
@@ -66,6 +76,7 @@
   /* ---- three-part working system ---- */
   .triad { display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:1px solid var(--hairline); margin-top:40px; }
   @media (max-width:820px){ .triad{ grid-template-columns:1fr; } }
+  .triad.duo3 { margin-top:0; border-top:none; }
   .lobe { padding:30px 28px; border-right:1px solid var(--hairline); }
   .triad .lobe:last-child { border-right:none; }
   @media (max-width:820px){ .lobe{ border-right:none; border-bottom:1px solid var(--hairline);} .triad .lobe:last-child{ border-bottom:none; } }
@@ -144,7 +155,9 @@
   <div class="wrap">
     <span class="wordmark">FRANK&nbsp;EPPS</span>
     <div class="tabs" role="tablist" aria-label="Portfolio sections">
-      <button class="tab" role="tab" aria-selected="true" data-tab="working">Working System</button>
+      <button class="tab" role="tab" aria-selected="true" data-tab="northstar">North Star</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="tmworld">Three Mountaintops World</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="working">Working System</button>
       <button class="tab" role="tab" aria-selected="false" data-tab="studio">Production Studio</button>
       <button class="tab" role="tab" aria-selected="false" data-tab="systems">More Systems</button>
       <button class="tab" role="tab" aria-selected="false" data-tab="about">About</button>
@@ -154,8 +167,173 @@
 
 <main class="wrap">
 
+  <!-- ============ TAB: NORTH STAR ============ -->
+  <section class="panel active" id="northstar" role="tabpanel">
+    <span class="eyebrow kicker">The north star</span>
+    <h1>Three <em>Mountaintops</em></h1>
+    <p class="lead"><strong>I am building to a point where I have a personal system that is unique to me, and a skeleton that anyone else can use to create a unique system for themselves.</strong></p>
+    <p class="lead" style="margin-top:16px;">It points toward my north star: <em>We build communities where every person owns a personal system that helps them provide for themselves, pursue what they love, and know who they are to the people around them — and we use what that makes possible to give people who've lost their footing the same tools to find it again.</em></p>
+    <p class="lead" style="margin-top:12px;font-size:16px;">This is the horizon the whole project points toward. It is <strong>not</strong> a description of what exists yet.</p>
+
+    <figure class="hero-shot">
+      <img src="img/north-star.svg" alt="Three Mountaintops: everyone owns their own system; Provision, how they make money; Creative, what they'd do for free; Definition, who they are to other people; Understudy, the layer that connects them; the Return, growing food and providing housing for people going through a hard time." loading="lazy" />
+      <figcaption>Every person in the community has their own system — a personal agent, built around them, that grows as they do. It isn't generic. It's trained on how they think, and it tracks three things at once.</figcaption>
+    </figure>
+
+    <div class="triad">
+      <div class="lobe">
+        <span class="k">PROVISION</span>
+        <h3>How they make money</h3>
+        <div class="role">The ground floor</div>
+        <p>Bills, household, what it takes to keep a life running. The ground floor, not because it matters most, but because nothing else is possible without it.</p>
+      </div>
+      <div class="lobe">
+        <span class="k">CREATIVE</span>
+        <h3>What they'd do for free</h3>
+        <div class="role">Where their voice lives</div>
+        <p>The thing they'd pursue even if nobody paid them. Where their actual voice lives, separate from whatever they do to get by.</p>
+      </div>
+      <div class="lobe">
+        <span class="k">DEFINITION</span>
+        <h3>Who they are to other people</h3>
+        <div class="role">Holding onto themselves</div>
+        <p>How they affect the people around them, and how they hold onto themselves while doing it. Not who the community needs them to be — who they actually are, inside it.</p>
+      </div>
+    </div>
+
+    <div class="triad duo3">
+      <div class="lobe">
+        <span class="k">THE LAYER THAT CONNECTS THEM</span>
+        <h3>Understudy</h3>
+        <p>Understudy's job is not to manage three pillars separately. It's to find where they're the same thing wearing different clothes, and hand the person a single direction that moves all three forward at once.</p>
+      </div>
+      <div class="lobe">
+        <span class="k">OWNERSHIP IS THE WHOLE POINT</span>
+        <h3>Theirs</h3>
+        <p>Everyone owns their own system. Not rented, not licensed — theirs. That single word is what separates this from every other tool a person is offered: it cannot be repriced, revoked, or switched off by someone else, and what it learns about them stays with them.</p>
+      </div>
+      <div class="lobe">
+        <span class="k">THE RETURN</span>
+        <h3>The community sustains the return</h3>
+        <p>A nonprofit sits alongside this and does one job: take what the community generates and funnel it into growing food and providing housing for people going through a hard time. The people inside them get access to the same system everyone else has. The community sustains the return. The return doesn't drain the community.</p>
+      </div>
+    </div>
+
+    <figure class="hero-shot" style="margin-top:26px;">
+      <img src="img/orrery-universe.png" alt="The Orrery: three suns, one for each mountaintop, with every project in orbit, a comet, and the archive where finished work falls." loading="lazy" />
+      <figcaption>The Orrery, the instrument I am building it with: three suns, every project in orbit. Distance is how recently a project was touched, size is how much work it holds, and finished work falls into the archive.</figcaption>
+    </figure>
+
+    <figure class="hero-shot" style="margin-top:22px;">
+      <a href="https://voyage.understudy.consulting" target="_blank" rel="noopener"><img src="img/voyage-universe.jpg" alt="Voyage, the public edition of the Orrery: three suns braided together around the Armillary, with the Horizon archive, open for anyone to fly through." loading="lazy" /></a>
+      <figcaption>Fly through it yourself: <a href="https://voyage.understudy.consulting" target="_blank" rel="noopener" style="color:var(--brass);border-bottom:1px solid var(--hairline);">voyage.understudy.consulting</a> is the public edition of the Orrery, made for anyone to explore. Each mountain is a world you can enter, with illustrative data in place of the private system.</figcaption>
+    </figure>
+
+    <p class="lead" style="margin-top:30px;"><strong>Where this stands today.</strong> Right now the nonprofit is not yet formed. Nothing has been raised. What runs today is the system I am building it with, and the other tabs show those parts with their honest status.</p>
+
+    <div class="system" style="margin-top:22px;">
+      <span class="ref">WHAT THE IDEA NEEDS · WHAT RUNS TODAY</span>
+      <ul>
+        <li><strong>Say what it cannot prove:</strong> the Orrery runs every night with 2,045 tests, and today reports 0 of 11 flows fully verified rather than pretending.</li>
+        <li><strong>Earn every permission:</strong> the Understudy starts read-only and earns each rung on a record someone else checks; 150 adjudications, none confirmed false.</li>
+        <li><strong>Remember with sources:</strong> the Knowledge Library, in a supervised pilot; its public code has 1,805 tests in CI.</li>
+        <li><strong>Keep each person's data apart:</strong> per-customer isolation in the agent runtime, and row-level security on every table in Authors Codex.</li>
+        <li><strong>Ownership, today:</strong> the data, memory and rules are mine and portable; the models are rented and swappable.</li>
+      </ul>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn" href="https://voyage.understudy.consulting" target="_blank" rel="noopener">Fly through the Orrery</a>
+      <a class="btn ghost" href="https://github.com/sorry2befrank/portfolio/blob/main/work/north-star.md" target="_blank" rel="noopener">Read the full North Star</a>
+      <a class="btn ghost" data-goto="working" href="#">See the working system</a>
+      <a class="btn ghost" href="mailto:frank@marqueeweb.com?subject=Role%20or%20project%20inquiry">Get in touch</a>
+    </div>
+  </section>
+
+  <!-- ============ TAB: THREE MOUNTAINTOPS WORLD ============ -->
+  <section class="panel" id="tmworld" role="tabpanel">
+    <span class="eyebrow kicker">My own platform · built end to end</span>
+    <h1>Three Mountaintops <em>World</em></h1>
+    <p class="lead"><strong>The platform I built for my four-book series:</strong> a reading site and living codex of the world, an open discussion hub, films, a game, a member portal and a merch shop. Live at <a href="https://threemountaintops.world" target="_blank" rel="noopener" style="color:var(--brass);border-bottom:1px solid var(--hairline);">threemountaintops.world</a>.</p>
+    <p class="lead" style="margin-top:16px;"><em>"my own platform I made. Complete with merch sales. That I built myself."</em> <span style="font-size:15px;white-space:nowrap;">Spoken, 2026-11-21.</span></p>
+    <p class="lead" style="margin-top:12px;font-size:16px;">The series shares its name with my north star; it is the project on the Creative mountain. I write every word of the books myself, so this tab shows only the platform around them. Patreon takes membership payments and Fourthwall handles merch checkout; the rest is mine.</p>
+
+    <figure class="hero-shot">
+      <a href="https://threemountaintops.world" target="_blank" rel="noopener"><img src="img/tmw-home.png" alt="The Three Mountaintops homepage: the title over a lit mountain citadel, 'Who are you?', and three buttons: Start Reading (free), Enter the Living Codex, Play The Path." loading="lazy" /></a>
+      <figcaption>The public homepage: "A four-book journey through identity, shadow, power, and the worlds within us." Three doors: read free, enter the codex, play the game.</figcaption>
+    </figure>
+
+    <div class="triad">
+      <div class="lobe">
+        <span class="k">THE SITE</span>
+        <h3>Living Codex</h3>
+        <div class="role">Live · static site + Node build · Vercel</div>
+        <p>Chapters, characters, world, locations, weapons, parables, a 325-entry gallery and 6 public films. One redaction function means a locked entry ships only its teaser to the browser.</p>
+      </div>
+      <div class="lobe">
+        <span class="k">THE HUB</span>
+        <h3>The Gathering</h3>
+        <div class="role">Built · Supabase, row-level security on every table</div>
+        <p>An open forum: no sign-up to read or post. Honest status: on 2026-11-21 it did not load for visitors because its database backend was unreachable; it needs restoring.</p>
+      </div>
+      <div class="lobe">
+        <span class="k">THE GAME</span>
+        <h3>The Path</h3>
+        <div class="role">Member-gated · Godot 4.6 web + Three.js combat</div>
+        <p>Walk the kingdom; tactical grid combat. 39,385 lines of GDScript. An Edge gate checks a signed cookie on every route of the game host. The free public beta ran 2026-09-10 to 2026-10-16 and has ended.</p>
+      </div>
+    </div>
+
+    <div class="triad duo3">
+      <div class="lobe">
+        <span class="k">MEMBERS</span>
+        <h3>Portal &amp; lore chat</h3>
+        <div class="role">Member-gated · Patreon sign-in · RAG</div>
+        <p>A chat about the world whose retrieval index is filtered by the member's tier. Untagged lore counts as the highest tier, and the build refuses to write an index that would leak.</p>
+      </div>
+      <div class="lobe">
+        <span class="k">MERCH</span>
+        <h3>The Lane</h3>
+        <div class="role">Live · checkout on Fourthwall</div>
+        <p>A shop written in the world's voice: 15 products in 5 stalls on the site, 21 on the Fourthwall store, each made to order.</p>
+      </div>
+      <div class="lobe">
+        <span class="k">MEDIA &amp; REACH</span>
+        <h3>Studio &amp; engine</h3>
+        <div class="role">Built · studio local-only</div>
+        <p>The <a data-goto="studio" href="#" style="color:var(--brass);border-bottom:1px solid var(--hairline);">Production Studio</a> makes the art and trailers. A campaign engine drafts daily posts into an approval queue and builds ads paused; only Bluesky can post on its own, and only when armed.</p>
+      </div>
+    </div>
+
+    <div class="shot-grid" style="margin-top:26px;border:1px solid var(--hairline);">
+      <figure><img src="img/path-combat.png" alt="The Path: 3D tactical grid combat in a forest, a cloaked unit facing a Forest Boar, with Skills, Move, Attack, Wait and End turn." loading="lazy" /><figcaption>The Path · development capture, provisional models</figcaption></figure>
+      <figure><img src="img/tmw-films.jpg" alt="The Films hub: '6 Films', poster cards with play buttons." loading="lazy" /><figcaption>Films · 6 public films, made in the studio</figcaption></figure>
+      <figure><img src="img/tmw-shop-lane.png" alt="The Lane: the in-world merch shop, opening on the Weaver's Stall with hoodies, a kuzi and a tee." loading="lazy" /><figcaption>The Lane · merch in the world's voice</figcaption></figure>
+    </div>
+
+    <div class="system" style="margin-top:26px;">
+      <div class="system-body">
+        <span class="ref">WHERE IT STANDS · 2026-11-21</span>
+        <ul>
+          <li><strong>Live, public:</strong> the site and codex (open mode), the films, the gallery, the Lane and the Fourthwall store.</li>
+          <li><strong>Member-gated:</strong> The Path, the lore chat, and 1 early-access chapter (6 chapters are free to read).</li>
+          <li><strong>Built, not loading today:</strong> the Gathering, until its backend is restored.</li>
+          <li><strong>Built, local-only:</strong> the Studio. <strong>Not built:</strong> forum threads tied to codex entries.</li>
+          <li><strong>Tests run 2026-11-21:</strong> 161 combat, 24 release, 3 lore-gate and 5 game-beta, 103 campaign engine, all passing. The 103 Godot test files were counted, not run.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn" href="https://threemountaintops.world" target="_blank" rel="noopener">Visit threemountaintops.world</a>
+      <a class="btn ghost" href="https://path.threemountaintops.world" target="_blank" rel="noopener">The Path (members)</a>
+      <a class="btn ghost" href="https://github.com/sorry2befrank/portfolio/blob/main/work/three-mountaintops-world.md" target="_blank" rel="noopener">Read the case study</a>
+      <a class="btn ghost" data-goto="studio" href="#">See the studio</a>
+    </div>
+  </section>
+
   <!-- ============ TAB: WORKING SYSTEM ============ -->
-  <section class="panel active" id="working" role="tabpanel">
+  <section class="panel" id="working" role="tabpanel">
     <span class="eyebrow kicker">Systems Integrator · Governed &amp; Observable AI</span>
     <h1>I build governed AI systems — and I run my own operation on <em>one of them</em>.</h1>
     <p class="lead"><strong>I don't just build AI systems for clients; I run my own studio on one I built.</strong> Three layers: an atlas that maps the operation and names where each workflow breaks, a console where I decide, and an engine that does bounded work. It is built so that consequential actions wait for a human, and my agency console's inability to send or deploy is checked by an automated test that scans its runtime source.</p>
@@ -186,8 +364,8 @@
       <div class="lobe">
         <span class="k">EXECUTE</span>
         <h3>The Armillary</h3>
-        <div class="role">Autonomous, bounded execution engine</div>
-        <p>Turns approved intent into bounded work orders and runs them unattended overnight — each repair isolated in a git worktree, gated by default-deny policy, a circuit breaker, per-job budgets, and a local Ollama juror. Real file-and-line evidence before a human promotes anything.</p>
+        <div class="role">Bounded overnight execution engine</div>
+        <p>Turns approved intent into bounded work orders and runs them overnight — each repair isolated in a git worktree, gated by default-deny policy, a circuit breaker, per-job budgets, and a local Ollama juror. Real file-and-line evidence before a human promotes anything. Honest status: across 35 attempts, the unattended repair lane has not yet landed a verified repair.</p>
       </div>
     </div>
 
@@ -197,7 +375,7 @@
     </figure>
 
     <figure class="hero-shot" style="margin-top:22px;">
-      <img src="img/armillary-master.png" alt="The Armillary Master Console — three governed personas (Director, Executive, Psychopomp), each with a standing directive and a four-field report, gated by run and directive controls." loading="lazy" />
+      <img src="img/armillary-master.png" alt="The Armillary Master Console — three governed personas, one for each mountaintop, each with a standing directive and a four-field report, gated by run and directive controls." loading="lazy" />
       <figcaption>EXECUTE — the Armillary Master Console: three governed personas read the reports and move the work, each run bounded and logged, with a person approving what ships. It reads and directs — it never does the work itself.</figcaption>
     </figure>
 
@@ -330,11 +508,23 @@
   (function () {
     var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
     var panels = Array.prototype.slice.call(document.querySelectorAll('.panel'));
-    function show(name) {
+    function show(name, keepScroll) {
+      if (!panels.some(function (p) { return p.id === name; })) return;
       tabs.forEach(function (t) { t.setAttribute('aria-selected', String(t.dataset.tab === name)); });
       panels.forEach(function (p) { p.classList.toggle('active', p.id === name); });
-      window.scrollTo({ top: 0, behavior: 'auto' });
+      try { history.replaceState(null, '', '#' + name); } catch (e) {}
+      if (!keepScroll) window.scrollTo({ top: 0, behavior: 'auto' });
     }
+    var startHash = location.hash.slice(1);
+    if (startHash && panels.some(function (p) { return p.id === startHash; })) {
+      // Open the panel at its top, not where the browser's fragment jump would
+      // leave it (under the sticky header).
+      try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+      show(startHash);
+      var toTop = function () { window.scrollTo(0, 0); };
+      window.addEventListener('load', function () { toTop(); setTimeout(toTop, 0); });
+    }
+    window.addEventListener('hashchange', function () { show(location.hash.slice(1)); });
     tabs.forEach(function (t) { t.addEventListener('click', function () { show(t.dataset.tab); }); });
     document.querySelectorAll('[data-goto]').forEach(function (a) {
       a.addEventListener('click', function (e) { e.preventDefault(); show(a.dataset.goto); });

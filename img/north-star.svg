@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="560" viewBox="0 0 1000 560" role="img" aria-labelledby="t d">
+  <title id="t">Three Mountaintops, the north star</title>
+  <desc id="d">Every person owns their own system. Three pillars: Provision, how they make money; Creative, what they'd do for free; Definition, who they are to other people. Understudy, the layer that connects them, finds where they are the same thing wearing different clothes and hands the person a single direction. The Return: a nonprofit that funnels what the community generates into growing food and providing housing for people going through a hard time. The community sustains the return; the return doesn't drain the community.</desc>
+  <defs>
+    <style>
+      .bg{fill:#0d1210}
+      .line{stroke:#6e6a55;stroke-width:1.2;fill:none}
+      .t{font-family:Georgia,'Cormorant Garamond',serif;fill:#ece6d4}
+      .s{font-family:'IBM Plex Mono',Consolas,monospace;fill:#a8a48f;font-size:12px;letter-spacing:.06em}
+      .h{font-size:22px}
+      .box{fill:#131a17;stroke-width:1.4}
+    </style>
+  </defs>
+  <rect class="bg" width="1000" height="560" rx="10"/>
+
+  <circle cx="500" cy="46" r="9" fill="#ece6d4"/>
+  <text x="500" y="82" text-anchor="middle" class="t" font-size="20">Everyone owns their own system. Not rented, not licensed — theirs.</text>
+  <path class="line" d="M500 92 V118 M500 118 H170 M500 118 H830 M170 118 V138 M500 118 V138 M830 118 V138"/>
+
+  <g>
+    <rect class="box" x="60" y="138" width="220" height="124" rx="8" stroke="#c9a24a"/>
+    <text x="170" y="174" text-anchor="middle" class="t h" style="fill:#c9a24a">Provision</text>
+    <text x="170" y="198" text-anchor="middle" class="s">HOW THEY MAKE MONEY</text>
+    <text x="170" y="226" text-anchor="middle" class="t" font-size="14">what it takes to keep</text>
+    <text x="170" y="244" text-anchor="middle" class="t" font-size="14">a life running</text>
+
+    <rect class="box" x="390" y="138" width="220" height="124" rx="8" stroke="#4fb99a"/>
+    <text x="500" y="174" text-anchor="middle" class="t h" style="fill:#4fb99a">Creative</text>
+    <text x="500" y="198" text-anchor="middle" class="s">WHAT THEY'D DO FOR FREE</text>
+    <text x="500" y="226" text-anchor="middle" class="t" font-size="14">where their actual voice lives,</text>
+    <text x="500" y="244" text-anchor="middle" class="t" font-size="14">separate from how they get by</text>
+
+    <rect class="box" x="720" y="138" width="220" height="124" rx="8" stroke="#8a8fd8"/>
+    <text x="830" y="174" text-anchor="middle" class="t h" style="fill:#8a8fd8">Definition</text>
+    <text x="830" y="198" text-anchor="middle" class="s">WHO THEY ARE TO OTHER PEOPLE</text>
+    <text x="830" y="226" text-anchor="middle" class="t" font-size="14">who they actually are,</text>
+    <text x="830" y="244" text-anchor="middle" class="t" font-size="14">inside it</text>
+  </g>
+
+  <path class="line" d="M170 262 V296 M500 262 V296 M830 262 V296"/>
+  <rect class="box" x="60" y="296" width="880" height="104" rx="8" stroke="#ece6d4" stroke-opacity=".55"/>
+  <text x="500" y="328" text-anchor="middle" class="t h">Understudy — the layer that connects them</text>
+  <text x="500" y="355" text-anchor="middle" class="t" font-size="15">It finds where they're the same thing wearing different clothes,</text>
+  <text x="500" y="377" text-anchor="middle" class="t" font-size="15">and hands the person a single direction that moves all three forward at once.</text>
+
+  <path class="line" d="M500 400 V430"/>
+  <rect x="60" y="430" width="880" height="100" rx="8" fill="#131a17" stroke="#c9a24a" stroke-width="1.4"/>
+  <text x="500" y="462" text-anchor="middle" class="t h" style="fill:#c9a24a">The Return</text>
+  <text x="500" y="488" text-anchor="middle" class="t" font-size="15">Growing food and providing housing for people going through a hard time</text>
+  <text x="500" y="510" text-anchor="middle" class="s">THE COMMUNITY SUSTAINS THE RETURN. THE RETURN DOESN'T DRAIN THE COMMUNITY.</text>
+</svg>

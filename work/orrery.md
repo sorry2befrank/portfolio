@@ -16,6 +16,12 @@ The idea that runs through all of it: *"unknown" is the default, not "fine".* If
 
 ## What it looks like
 
+The living view: three suns for the three areas of work, every project in orbit (distance is how recently it was touched, size is how much work it holds), and finished work falling into an archive called the Horizon.
+
+![The Orrery: three suns with projects in orbit, a comet, and the archive](../img/orrery-universe.png)
+
+The working views: the map of components, and the diagnosis of where each workflow stops.
+
 ![The Orrery system atlas: components in layers, with the flows that run through them](../img/atlas-systemmap.png)
 
 ![The diagnosis view: the first step in each workflow that has no proof](../img/flows-break.png)
@@ -30,6 +36,9 @@ The idea that runs through all of it: *"unknown" is the default, not "fine".* If
 | Automated tests | **2,045 tests: 2,043 pass, 0 fail, 2 skipped** across 201 test files (last full run 2026-11-20) | the system's own self-verify log |
 | Atlas | **56 components, 8 layers, 104 connections, 11 governed flows** | counted from the atlas data file |
 | Overnight chain | **33 stages**, run every night in the early morning; median run about 85 minutes | counted from the chain script and 119 recorded runs |
+| Months of unattended running | **120 nights** between 2026-07-20 and 2026-11-20, missing 4 single nights; one planned shutdown (the evening of 2026-11-04, about four hours, for storage work) | the chain's run log, by night |
+| Agent runs, unattended | **382 lead-agent runs and 1,465 crew-agent runs** across 187 nightly cycles, July to November | the cycle log |
+| Overnight work orders | **219 created; 66 ran; 26 reached my review; I accepted 21** (most in August and September). No new orders since 2026-10-18: I paused the Orrery's work to redesign it, while its nightly checks kept running. | the work-order log, final state per order |
 | Receipts written | 9,504 rows tied together by 3,124 trace IDs | counted from the receipt ledger |
 
 A note on honesty: today's diagnosis shows **0 of 11 flows fully verified, 5 unproven and 6 blocked** (four of the six are waiting on a decision from me). That is the system working as designed. It would be easy to build a dashboard that shows all green; this one shows what it can prove.
@@ -54,6 +63,8 @@ The Atlas models the operation as a typed graph: 56 components in 8 layers, with
 - The first step that breaks marks everything after it `unreached`, so you see *where* a flow stops, not a wall of red.
 - A human gate (a decision waiting on me) is a named stop, not an error.
 - Snapshots carry an identity, so a stale snapshot cannot pass as tonight's.
+
+In AI terms this is the **evaluation layer for workflows**: every night since late August it has graded each of the 11 flows against evidence and named the first step that broke. The Understudy's citation harness is the second layer, **evaluation of agent output**: it checks every file and line an agent cites, and has rejected 22 of 208 reports ([details](understudy.md)). Neither is a benchmark suite with a fixed test set, and I don't call them one.
 
 Design decision: **stores hold facts, the Diagnosis holds relationships.** The Diagnosis does not re-derive facts; it checks whether the facts the stores claim are connected by proof.
 

@@ -1,10 +1,53 @@
-# Frank Epps: a body of work, with the receipts
+# Three Mountaintops
 
-I am a systems integrator who builds AI systems and runs [Understudy](https://understudy.consulting) (AI consulting and builds, and AI training for organizations). I spent more than ten years building and integrating electrical and control systems on rockets and aircraft, and then worked on humanoid robots, where a system that fails quietly is not acceptable. I now build AI systems to the same standard: **they say what they cannot prove.**
+**Frank Epps** · systems integrator · [Understudy](https://understudy.consulting)
 
-This repository is the evidence. It is written for anyone who wants to know what I can build, technical or not. Each page starts in plain language and then goes under the hood.
+> **I am building to a point where I have a personal system that is unique to me, and a skeleton that anyone else can use to create a unique system for themselves.**
 
-Live one-page site: **[sorry2befrank.github.io/portfolio](https://sorry2befrank.github.io/portfolio/)**
+It points toward my north star:
+
+> We build communities where every person owns a personal system that helps them provide for themselves, pursue what they love, and know who they are to the people around them — and we use what that makes possible to give people who've lost their footing the same tools to find it again.
+
+Every person's system tracks three things at once: **Provision** (how they make money), **Creative** (what they'd do for free) and **Definition** (who they are to other people). **Understudy** is the layer that connects them. Everyone owns their own system: not rented, not licensed, theirs. This is the horizon, not a description of what exists yet. **[Read the whole North Star, in my words](work/north-star.md)**.
+
+![Three Mountaintops: everyone owns their own system; Provision, Creative and Definition; Understudy connects them; the Return](img/north-star.svg)
+
+## See it
+
+[![Voyage, the public edition of the Orrery: three suns braided around the Armillary, open for anyone to fly through](img/voyage-universe.jpg)](https://voyage.understudy.consulting)
+
+**Fly through it yourself: [voyage.understudy.consulting](https://voyage.understudy.consulting)** is the public edition of the Orrery, the system I am building this with, made for anyone to explore. Each mountain is a world you can enter, with illustrative data in place of the private system. Below is the private Orrery it is drawn from.
+
+![The Orrery: three suns, every project in orbit, a comet, and the archive the finished work falls into](img/orrery-universe.png)
+
+## Three Mountaintops World: my own platform
+
+> my own platform I made. Complete with merch sales. That I built myself.
+>
+> *Spoken, 2026-11-21.*
+
+My four-book series shares its name with the north star; it is the project on the Creative mountain. I built the platform around it: a reading site and living codex, an open discussion hub (the Gathering), films, a game (The Path), a member portal with a tier-filtered lore chat, and a merch shop. I write every word of the books myself; the case study covers only the platform.
+
+- **Live:** [threemountaintops.world](https://threemountaintops.world) (site, codex, films, gallery, the Lane shop) and [the Fourthwall store](https://three-mountaintops-shop.fourthwall.com) it links to for checkout.
+- **Member-gated:** [path.threemountaintops.world](https://path.threemountaintops.world), the game (top Patreon tier; the free public beta ended 2026-10-16).
+- **Honest status:** the Gathering forum is built but did not load for visitors on 2026-11-21, because its database backend was unreachable.
+
+**[Read the case study](work/three-mountaintops-world.md)**.
+
+[![The Three Mountaintops homepage](img/tmw-home.png)](https://threemountaintops.world)
+
+## Who is building it
+
+I spent more than ten years in hardware: the U.S. Air Force, then integration engineering at Blue Origin (New Shepard, BE-4 / Vulcan, New Glenn), then eVTOL aircraft and humanoid robots. In all of it, a system that fails quietly is not acceptable. I now build AI systems to the same standard: **they say what they cannot prove.** I run [Understudy](https://understudy.consulting) (AI consulting and builds, and AI training for organizations). Open to AI-systems roles and contract work: **frank@marqueeweb.com**.
+
+This repository is written for anyone who wants to know what I can build, technical or not. Each page starts in plain language and then goes under the hood. Live one-page site: **[sorry2befrank.github.io/portfolio](https://sorry2befrank.github.io/portfolio/)**
+
+## Start here
+
+- **Hiring for AI systems work?** [The Understudy](work/understudy.md) (an agent that earns each permission on a checked record), [engineering stories](work/engineering-stories.md) (what broke, what I measured, what I changed), and the public code in [knowledge-library](https://github.com/sorry2befrank/knowledge-library) (1,805 tests in CI).
+- **Running a business?** [Client work](work/client-work.md), and [work with me](https://understudy.consulting/work-with-me.html) for builds and AI training.
+- **Curious about the idea?** [The North Star](work/north-star.md), then [fly through Voyage](https://voyage.understudy.consulting).
+- **Want to see a whole product I built and run?** [Three Mountaintops World](work/three-mountaintops-world.md), live at [threemountaintops.world](https://threemountaintops.world).
 
 ## The scale of it
 
@@ -21,6 +64,8 @@ Full table, with how every figure was measured: **[by the numbers](work/by-the-n
 
 | Case study | One line |
 |---|---|
+| **[The North Star](work/north-star.md)** | What I am building, the three mountains, and how the Knowledge Library becomes the memory. Start here. |
+| **[Three Mountaintops World](work/three-mountaintops-world.md)** | The platform I built for my book series: reading site and codex, discussion hub, films, a Godot game behind a member gate, a tier-filtered lore chat, and merch. Live at [threemountaintops.world](https://threemountaintops.world). |
 | **[The Orrery](work/orrery.md)** | A control room for a one-person AI operation: it maps every workflow, shows where each one is broken, does bounded work overnight, and refuses to say "working" without a receipt. |
 | **[The Understudy](work/understudy.md)** | An AI agent that starts read-only and must earn every permission on a record checked by someone else. 208 reports, 150 adjudications, 0 confirmed-false, and a ladder it cannot skip. |
 | **[Agent runtime](work/agent-runtime.md)** | Many agents for many customers, with no cross-customer reads, one metered model client and no path to production without a human. Safety rules are tests that are shown to fail. |
