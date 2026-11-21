@@ -76,12 +76,14 @@ The Creation file also carries a hard rule: the agent never drafts a line of the
 
 ## How it is being built (status, not vision)
 
-The parts below run today, or are designed, and each is marked honestly. More of the tools are in [Tools](tools.md) and [By the numbers](by-the-numbers.md).
+The parts below run today, or are designed, and each is marked honestly. Every thing I have built, one line each with its status, is in [the catalog](catalog.md). More of the tools are in [Tools](tools.md) and [By the numbers](by-the-numbers.md).
 
 A system that acts across someone's whole life has to say what it cannot prove, earn every permission, remember with sources, and keep each person's data apart. Those are the problems the rest of this portfolio works on:
 
-| What the idea needs | What I built | Status today (2026-11-20) |
+| What the idea needs | What I built | Status (2026-11-20 and 2026-11-21) |
 |---|---|---|
+| A personal system unique to me | **[Michael](michael.md)**: my journal and goal tracker, with a meditation app, a dream journal, a morning companion and a RAG over my own entries; machinery shown, content never | **Running**, in daily use, private. 866 of 866 tests on 2026-11-21. |
+| A seed for someone else's system | **[Cosmic Blueprint](cosmic-blueprint.md)**: a visitor starts from a seed of their own, with each account's data kept to its owner | **Live** at [cosmic-blueprint.org](https://www.cosmic-blueprint.org). |
 | Say what it cannot prove | **[The Orrery](orrery.md)**: maps my own system, shows where each part breaks, and refuses to say "working" without a receipt | **Running** every night; 2,045 tests. Today none of its 11 flows is fully verified, and it says so. |
 | Earn every permission | **[The Understudy](understudy.md)**: starts read-only and earns each rung on a record someone else checks | **Running** at a limited rung; 150 adjudications, none confirmed false. Unattended repair has not landed yet. |
 | Remember with sources | **[Knowledge Library](knowledge-library.md)**: decisions, specs and receipts saved with their source and cited instead of re-read | **Supervised pilot**: a private deployment since 2026-10-20; the public repository is a synthetic-data snapshot. The weekly cleanup cycle is designed, not built. |
@@ -93,4 +95,4 @@ A system that acts across someone's whole life has to say what it cannot prove, 
 
 ## Related
 
-[Three Mountaintops World](three-mountaintops-world.md) · [Tools](tools.md) · [By the numbers](by-the-numbers.md) · [Build method](build-method.md) · [Engineering stories](engineering-stories.md)
+[Everything I have built (catalog)](catalog.md) · [Three Mountaintops World](three-mountaintops-world.md) · [Michael](michael.md) · [Cosmic Blueprint](cosmic-blueprint.md) · [Streams and shorts](streams-and-shorts.md) · [Tools](tools.md) · [By the numbers](by-the-numbers.md) · [Build method](build-method.md) · [Engineering stories](engineering-stories.md)

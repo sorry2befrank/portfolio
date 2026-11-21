@@ -55,4 +55,4 @@ The "230 of 232 reviewed" counter in an earlier screenshot is a browser-side cou
 
 ## Related
 
-[Authors Codex](authors-codex.md) · [Build method](build-method.md)
+[Streams and shorts](streams-and-shorts.md) · [Authors Codex](authors-codex.md) · [Build method](build-method.md)

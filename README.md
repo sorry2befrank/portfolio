@@ -36,6 +36,32 @@ My four-book series shares its name with the north star; it is the project on th
 
 [![The Three Mountaintops homepage](img/tmw-home.png)](https://threemountaintops.world)
 
+## Streams and shorts
+
+> In creation, I have the daily shorts lane where I've made a live presenter. And clip up streams that I do on TikTok.
+>
+> *Spoken, 2026-11-21.*
+
+The tools around my streams and classes, all running on my own machine: **Live Presenter** (Markdown decks with private notes and a clean audience window; my class tool since 2026-11-02), **Stream Hub** (starts and stops my streams and recording through OBS, with stream keys encrypted), and a **clip pipeline** that turns a long stream into short vertical clips, proven on one 98-minute stream. Nothing is uploaded unless the exact approved clip still matches its hash. **[Read the case study](work/streams-and-shorts.md)**.
+
+## Michael: my personal system
+
+> It is my personal journal tracker that is personalized specifically to what I think is important and helps me track my goals and helps me achieve them, or helps me be able to have a reminder of what my tasks are. It's something that keeps me on par, and then there's a lot of different apps that have gotten integrated inside of it.
+>
+> *Spoken, 2026-11-21.*
+
+Michael is the first half of the lead sentence: the personal system unique to me. One installable web app holds a meditation app, a dream journal, a morning companion, goals and reminders, and a RAG over my own entries, all on one timeline. My data lives in my browser, every API route needs a signed session, and the AI Guide fails closed. In daily use; 866 of 866 tests passed on 2026-11-21. The page covers machinery only, never what I write in it. **[Read the case study](work/michael.md)**, and see [Kingdom Within](work/kingdom-within.md) for the research-and-teaching tools beside it.
+
+## Cosmic Blueprint: the seed
+
+> Cosmic Blueprint is the seed that I'm using in order to help someone else build their own personalized system that they can explore their own self in order to be successful in their regular day life.
+>
+> *Spoken, 2026-11-21.*
+
+Live at **[cosmic-blueprint.org](https://www.cosmic-blueprint.org)**. A visitor starts from a seed of their own, not from my goals, and grows a system with an assessment, a map, goals, a journal and a Guide with a memory they can see and edit. Each account holds only its owner's data under row-level security. **[Read the case study](work/cosmic-blueprint.md)**.
+
+[![The Cosmic Blueprint first screen: a painted mountain range at dusk and the question "What would you like to make room for in your life?"](img/cosmic-blueprint-seed.jpg)](https://www.cosmic-blueprint.org)
+
 ## Who is building it
 
 I spent more than ten years in hardware: the U.S. Air Force, then integration engineering at Blue Origin (New Shepard, BE-4 / Vulcan, New Glenn), then eVTOL aircraft and humanoid robots. In all of it, a system that fails quietly is not acceptable. I now build AI systems to the same standard: **they say what they cannot prove.** I run [Understudy](https://understudy.consulting) (AI consulting and builds, and AI training for organizations). Open to AI-systems roles and contract work: **frank@marqueeweb.com**.
@@ -48,12 +74,13 @@ This repository is written for anyone who wants to know what I can build, techni
 - **Running a business?** [Client work](work/client-work.md), and [work with me](https://understudy.consulting/work-with-me.html) for builds and AI training.
 - **Curious about the idea?** [The North Star](work/north-star.md), then [fly through Voyage](https://voyage.understudy.consulting).
 - **Want to see a whole product I built and run?** [Three Mountaintops World](work/three-mountaintops-world.md), live at [threemountaintops.world](https://threemountaintops.world).
+- **Want the full list?** [Everything I have built](work/catalog.md): 206 of the 221 things, one line each, with an honest status; the rest are private, and the catalog says why.
 
 ## The scale of it
 
 | | |
 |---|---|
-| **43** repositories | roughly **1 million** lines of code (about 780k source, 295k tests) |
+| **206** things built, one line each, in **[the catalog](work/catalog.md)** | roughly **1 million** lines of code (about 780k source, 295k tests) |
 | **5,100+** commits in all, **4,300+** since 2026-07-04 | the great majority written by AI agents that I direct and check; see [the method](work/build-method.md) |
 | **2,045** automated tests in the control system, run in full every night | the record shows 58 green, 15 red and 26 timeouts, and I publish it |
 | **56** components, **8** layers, **11** governed workflows in one live system map | today, none is marked "verified" without a receipt |
@@ -66,6 +93,11 @@ Full table, with how every figure was measured: **[by the numbers](work/by-the-n
 |---|---|
 | **[The North Star](work/north-star.md)** | What I am building, the three mountains, and how the Knowledge Library becomes the memory. Start here. |
 | **[Three Mountaintops World](work/three-mountaintops-world.md)** | The platform I built for my book series: reading site and codex, discussion hub, films, a Godot game behind a member gate, a tier-filtered lore chat, and merch. Live at [threemountaintops.world](https://threemountaintops.world). |
+| **[Michael](work/michael.md)** | My personal system: one web app holding a meditation app, a dream journal, a morning companion and a RAG over my own entries, local-first, with a Guide that fails closed. Machinery only. |
+| **[Cosmic Blueprint](work/cosmic-blueprint.md)** | The seed for someone else's system: a visitor starts from their own seed, with row-level security per account and a cost breaker that denies on any failure. Live at [cosmic-blueprint.org](https://www.cosmic-blueprint.org). |
+| **[Kingdom Within](work/kingdom-within.md)** | The tools behind a research-and-teaching project: checked study notes, a read-only snapshot for Michael, and clips that publish only when the exact approved file still matches. |
+| **[Streams and shorts](work/streams-and-shorts.md)** | Live Presenter, Stream Hub and a clip pipeline that turns a long stream into short vertical clips behind a hash-sealed approval gate. |
+| **[Everything I have built](work/catalog.md)** | The catalog: 206 things, one line each, with an honest status, plus 22 plans. |
 | **[The Orrery](work/orrery.md)** | A control room for a one-person AI operation: it maps every workflow, shows where each one is broken, does bounded work overnight, and refuses to say "working" without a receipt. |
 | **[The Understudy](work/understudy.md)** | An AI agent that starts read-only and must earn every permission on a record checked by someone else. 208 reports, 150 adjudications, 0 confirmed-false, and a ladder it cannot skip. |
 | **[Agent runtime](work/agent-runtime.md)** | Many agents for many customers, with no cross-customer reads, one metered model client and no path to production without a human. Safety rules are tests that are shown to fail. |
@@ -94,7 +126,7 @@ Full table, with how every figure was measured: **[by the numbers](work/by-the-n
 
 ## What is not here
 
-The private systems have no public source, so this is written, not code, apart from the two public repositories linked above ([knowledge-library](https://github.com/sorry2befrank/knowledge-library) and [understudy-audit](https://github.com/sorry2befrank/understudy-audit)). Client and customer names, revenue and private writing are deliberately left out. Every figure was recomputed from the real systems on 2026-11-20; figures I could not verify are marked, not quoted.
+The private systems have no public source, so this is written, not code, apart from the two public repositories linked above ([knowledge-library](https://github.com/sorry2befrank/knowledge-library) and [understudy-audit](https://github.com/sorry2befrank/understudy-audit)). Client and customer names, revenue and private writing are deliberately left out. Every figure was recomputed from the real systems on 2026-11-20 or 2026-11-21; figures I could not verify are marked, not quoted.
 
 ## Contact
 

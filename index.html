@@ -41,9 +41,11 @@
   .tab:hover { color:var(--brass-lit); }
   .tab[aria-selected="true"] { color:var(--brass-lit); border-color:var(--hairline-lit); background:var(--ink-2); }
   @media (max-width:720px){ .site .wrap{ gap:12px; padding-top:12px; padding-bottom:10px; } .tabs{ margin-left:0; width:100%; } .tab{ flex:1 1 auto; text-align:center; padding:9px 8px; } }
-  @media (max-width:1200px){ .tabs{ gap:4px; } .tab{ letter-spacing:0.06em; padding:9px 8px; } }
+  .tabs{ gap:4px; } .tab{ letter-spacing:0.06em; padding:9px 8px; }
   @media (min-width:721px){ .site .wrap{ padding-top:8px; padding-bottom:8px; } }
+  @media (min-width:721px) and (max-width:1200px){ .site .wrap{ gap:16px; } .tabs{ gap:2px; } .tab{ font-size:11.5px; letter-spacing:0.03em; padding:9px 6px; } }
   @media (max-width:820px){ header.site{ position:relative; } }
+  @media (max-width:480px){ .tabs{ gap:3px; } .tab{ font-size:11px; letter-spacing:0.02em; padding:8px 5px; } }
 
   /* ---- tab panels ---- */
   .panel { display:none; }
@@ -157,6 +159,7 @@
     <div class="tabs" role="tablist" aria-label="Portfolio sections">
       <button class="tab" role="tab" aria-selected="true" data-tab="northstar">North Star</button>
       <button class="tab" role="tab" aria-selected="false" data-tab="tmworld">Three Mountaintops World</button>
+      <button class="tab" role="tab" aria-selected="false" data-tab="michael">Michael</button>
       <button class="tab" role="tab" aria-selected="false" data-tab="working">Working System</button>
       <button class="tab" role="tab" aria-selected="false" data-tab="studio">Production Studio</button>
       <button class="tab" role="tab" aria-selected="false" data-tab="systems">More Systems</button>
@@ -245,6 +248,7 @@
     <div class="cta-row">
       <a class="btn" href="https://voyage.understudy.consulting" target="_blank" rel="noopener">Fly through the Orrery</a>
       <a class="btn ghost" href="https://github.com/sorry2befrank/portfolio/blob/main/work/north-star.md" target="_blank" rel="noopener">Read the full North Star</a>
+      <a class="btn ghost" href="https://github.com/sorry2befrank/portfolio/blob/main/work/catalog.md" target="_blank" rel="noopener">Everything I have built (catalog)</a>
       <a class="btn ghost" data-goto="working" href="#">See the working system</a>
       <a class="btn ghost" href="mailto:frank@marqueeweb.com?subject=Role%20or%20project%20inquiry">Get in touch</a>
     </div>
@@ -329,6 +333,93 @@
       <a class="btn ghost" href="https://path.threemountaintops.world" target="_blank" rel="noopener">The Path (members)</a>
       <a class="btn ghost" href="https://github.com/sorry2befrank/portfolio/blob/main/work/three-mountaintops-world.md" target="_blank" rel="noopener">Read the case study</a>
       <a class="btn ghost" data-goto="studio" href="#">See the studio</a>
+    </div>
+  </section>
+
+  <!-- ============ TAB: MICHAEL ============ -->
+  <section class="panel" id="michael" role="tabpanel">
+    <span class="eyebrow kicker">Definition</span>
+    <h1>Michael, my <em>personal system</em></h1>
+    <p class="lead"><em>"It is my personal journal tracker that is personalized specifically to what I think is important and helps me track my goals and helps me achieve them, or helps me be able to have a reminder of what my tasks are. It's something that keeps me on par, and then there's a lot of different apps that have gotten integrated inside of it."</em> <span style="font-size:15px;white-space:nowrap;">Spoken, 2026-11-21.</span></p>
+    <p class="lead" style="margin-top:16px;">Michael is the first half of the sentence this portfolio opens with: <strong>a personal system that is unique to me.</strong> It is one installable web app that folds about a dozen of my earlier stand-alone apps into a single daily timeline. This tab covers the machinery only: what each part does, how it is built and how my data is protected. Nothing here shows what I write in it.</p>
+    <p class="lead" style="margin-top:12px;font-size:16px;"><strong>Status, 2026-11-21:</strong> in daily use, private. Deployed on Vercel behind a session gate; 866 of 866 tests and the astronomy-engine audit passed that day.</p>
+
+    <div class="triad">
+      <div class="lobe">
+        <span class="k">THE DAY</span>
+        <h3>Today &amp; the Guide</h3>
+        <div class="role">Built · in daily use · LangGraph agent with a critic</div>
+        <p>A deterministic engine computes the day, and an AI Guide writes a short reading aligned to my own goals and cited to a wisdom library. A small critic model checks it, with at most one revision. If the critic still flags it, nothing composed ships and the plain formula renders instead.</p>
+      </div>
+      <div class="lobe">
+        <span class="k">THE APPS</span>
+        <h3>Morning, breath, dreams</h3>
+        <div class="role">Built · in daily use · one timeline of typed entries</div>
+        <p>A typed or spoken morning check-in with a Guide I can talk with, Breathe (the meditation app I made), a dream journal, goals with a weekly review, a morning brief and reminders. The spoken morning reading is transcribed back and compared word for word before it plays.</p>
+      </div>
+      <div class="lobe">
+        <span class="k">THE MEMORY</span>
+        <h3>Ask my own history</h3>
+        <div class="role">Built · RAG with vectors kept in the browser</div>
+        <p>The part that lets it reference what I said before. Entries are embedded with a small open model inside Michael's own server function, and search runs in the browser. An answer may come only from my own dated entries, and must cite each one.</p>
+      </div>
+    </div>
+
+    <div class="system" style="margin-top:26px;">
+      <div class="system-body">
+        <span class="ref">HOW MY DATA IS PROTECTED</span>
+        <ul>
+          <li><strong>Local-first:</strong> entries, goals, dreams and the embeddings live in my browser. The server is a thin set of API routes and keeps no user database.</li>
+          <li><strong>One user, one signed cookie:</strong> every API route needs an HMAC-signed session. On 2026-11-21 the pages answered and the API routes refused anyone without a session.</li>
+          <li><strong>Consent by source:</strong> the Guide reads only the source areas I select, out of 14, and only from the app's own typed stores.</li>
+          <li><strong>A safety screen that fails closed:</strong> reflective text is screened before it reaches a model, and any error counts as a positive. A monthly AI budget pause never switches the screen off.</li>
+          <li><strong>A vault I control:</strong> export is a full backup that always leaves out anything that looks like a key or secret; import only adds what is missing.</li>
+        </ul>
+      </div>
+    </div>
+
+    <article class="system" style="margin-top:26px;">
+      <div class="system-body">
+        <span class="ref">WISDOM SOURCE · ITS OWN APP</span>
+        <h3>The Interfaith Library</h3>
+        <div class="role">Live · React 19, Vite, D3 · <a href="https://interfaith-library.vercel.app/" target="_blank" rel="noopener" style="color:var(--brass);border-bottom:1px solid var(--hairline);">interfaith-library.vercel.app</a></div>
+        <p>A comparative encyclopedia of concepts, symbols, figures and practices: each entry leads with what the traditions share, then gives a view for each of 10 traditions and 4 non-religious lenses, with sourced quotes. 117 entries are live; a 124-entry version is built and not yet deployed.</p>
+        <p>Michael draws a corpus of 1,820 passages from it, and the build drops any quote whose wording is not verified. When the Guide proposes verses for the day, the code throws away the model's wording and refills each verse <strong>by reference</strong> from the real pool. If fewer than two traditions remain, nothing is shown.</p>
+        <div class="tags"><span class="tag">Verbatim-quote gate</span><span class="tag">43,722-verse index</span><span class="tag">In-memory vector search</span><span class="tag">No-fabrication refill</span></div>
+      </div>
+    </article>
+
+    <article class="system">
+      <div class="system-body">
+        <span class="ref">THE SEED · SOMEONE ELSE'S SYSTEM</span>
+        <h3>Cosmic Blueprint</h3>
+        <div class="role">Live · public first screens · <a href="https://www.cosmic-blueprint.org" target="_blank" rel="noopener" style="color:var(--brass);border-bottom:1px solid var(--hairline);">cosmic-blueprint.org</a></div>
+        <p><em>"Cosmic Blueprint is the seed that I'm using in order to help someone else build their own personalized system that they can explore their own self in order to be successful in their regular day life."</em> Spoken, 2026-11-21.</p>
+        <p>A visitor does not start from my goals. The first screen asks one question, "What would you like to make room for in your life?", and an optional birth sky is offered as a lens, not a verdict. Members get an assessment that places them on three mountains, a map of their own, goals, a journal and a Guide with a memory they can see and edit. Each account holds only its owner's data under row-level security, and every AI call passes one database check-and-charge that denies the call on any failure. Its Guide reuses Michael's design; the two share no code or data.</p>
+        <div class="tags"><span class="tag">Supabase RLS</span><span class="tag">Server-side plan checks</span><span class="tag">Fail-closed cost breaker</span><span class="tag">Stripe</span><span class="tag">PWA</span></div>
+      </div>
+      <figure class="shot"><a href="https://www.cosmic-blueprint.org" target="_blank" rel="noopener"><img src="img/cosmic-blueprint-seed.jpg" width="1366" height="860" alt="The Cosmic Blueprint first screen: a painted mountain range at dusk, a glowing labyrinth with 'Plant this seed', and the question 'What would you like to make room for in your life?'" loading="lazy" /></a><figcaption>The public first screen at desktop width, 2026-11-21. Nothing was typed or submitted.</figcaption></figure>
+    </article>
+
+    <p class="lead" style="margin-top:26px;font-size:16px;"><strong>Kingdom Within</strong>, a research-and-teaching project across Definition and Creation, follows the same rules: Michael reads only an allowlisted, read-only snapshot of its study notes, and a clip publishes only while the exact approved file still matches.</p>
+
+    <div class="system" style="margin-top:26px;">
+      <div class="system-body">
+        <span class="ref">WHERE IT STANDS · 2026-11-21</span>
+        <ul>
+          <li><strong>In daily use:</strong> Michael, by my own account, not a measured number. Private, single-user, no published address.</li>
+          <li><strong>Tests run 2026-11-21:</strong> 866 of 866 deterministic tests, and the engine audit at 8 of 8 gates against the Swiss Ephemeris, each gate proven to fail on a deliberately broken engine.</li>
+          <li><strong>No screenshots of Michael:</strong> it has no demo mode and its data lives in my browser, so any capture would show my own entries.</li>
+          <li><strong>Live, public:</strong> the Interfaith Library and Cosmic Blueprint's first screens. <strong>Built, not in use:</strong> Michael's multi-user back end, scaffolded only.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn" href="https://github.com/sorry2befrank/portfolio/blob/main/work/michael.md" target="_blank" rel="noopener">Read the Michael case study</a>
+      <a class="btn ghost" href="https://github.com/sorry2befrank/portfolio/blob/main/work/cosmic-blueprint.md" target="_blank" rel="noopener">Cosmic Blueprint</a>
+      <a class="btn ghost" href="https://github.com/sorry2befrank/portfolio/blob/main/work/kingdom-within.md" target="_blank" rel="noopener">Kingdom Within</a>
+      <a class="btn ghost" href="https://www.cosmic-blueprint.org" target="_blank" rel="noopener">Visit cosmic-blueprint.org</a>
     </div>
   </section>
 
@@ -422,6 +513,26 @@
       <img src="img/three-mountaintops.png" alt="Three Mountaintops — the live narrative site the production studio feeds: hero landing, chapters, characters, world, gallery, and films." loading="lazy" />
       <figcaption>The live output — <a href="https://threemountaintops.world" target="_blank" rel="noopener" style="color:var(--brass);border-bottom:1px solid var(--hairline);">threemountaintops.world</a>, the narrative site the studio and sorter publish to. Its art and films are made in the studio and published through the sorter above.</figcaption>
     </figure>
+
+    <article class="system" style="margin-top:26px;">
+      <div class="system-body">
+        <span class="ref">CREATION · STREAMS &amp; SHORTS</span>
+        <h3>Streams &amp; shorts: the daily shorts lane</h3>
+        <div class="role">Live Presenter · Stream Hub · clip pipeline · approval gate · all local</div>
+        <p><em>"In creation, I have the daily shorts lane where I've made a live presenter. And clip up streams that I do on TikTok."</em> Spoken, 2026-11-21.</p>
+        <ul>
+          <li><strong>Live Presenter</strong> — Markdown decks with private desk notes, a clean audience window for Zoom, or a wide or tall OBS stage. It listens on 127.0.0.1 with a desk token made fresh at each launch, and the stage never receives the notes. My class tool since 2026-11-02; 465 tests passing at its last recorded run that day.</li>
+          <li><strong>Stream Hub</strong> — one local page that starts and stops Kick, Twitch and the recording through OBS in a fixed order, blocks the whole start if setup is missing, and keeps stream keys encrypted with Windows DPAPI. TikTok streams run through TikTok LIVE Studio, started by hand.</li>
+          <li><strong>Clip pipeline</strong> — a long stream recording in, short vertical captioned clips out: transcripts, three separate judges per candidate, cuts snapped to real dips in the audio, loudness at -14 LUFS. Proven on one 98-minute stream: 28 candidates, 11 held back because another person appears in them, 6 rendered.</li>
+          <li><strong>Approval gate</strong> — Live &amp; Clips seals an approved clip by its SHA-256 hash, size, title and caption, and any change blocks the upload. Automatic publishing is built and switched off.</li>
+        </ul>
+        <div class="tags"><span class="tag">Server-sent events</span><span class="tag">obs-websocket</span><span class="tag">faster-whisper</span><span class="tag">ffmpeg + libass</span><span class="tag">Hash-sealed approval</span><span class="tag">MCP plugin (beta)</span></div>
+        <div class="cta-row" style="margin-top:22px;">
+          <a class="btn ghost" href="https://github.com/sorry2befrank/portfolio/blob/main/work/streams-and-shorts.md" target="_blank" rel="noopener">Read streams &amp; shorts</a>
+        </div>
+      </div>
+      <figure class="shot"><img src="img/stream-hub.png" width="986" height="544" alt="Stream Hub: Kick live, Twitch off, TikTok through TikTok LIVE Studio, the Presenter Teach scene and recording on." loading="lazy" /><figcaption>Stream Hub, a runtime check from 2026-10-26: Kick live, Twitch configured and off, TikTok through LIVE Studio.</figcaption></figure>
+    </article>
   </section>
 
   <!-- ============ TAB: MORE SYSTEMS ============ -->
@@ -429,6 +540,10 @@
     <span class="eyebrow kicker">More of the record</span>
     <h2 class="head">More systems I've shipped</h2>
     <p class="sub">Same governance discipline · different domains</p>
+    <p class="lead" style="font-size:16px;">This tab shows a few. The catalog lists 206 of the 221 things I have built, one line each, with an honest status; the rest are private, and the catalog says why.</p>
+    <div class="cta-row" style="margin-top:18px;">
+      <a class="btn ghost" href="https://github.com/sorry2befrank/portfolio/blob/main/work/catalog.md" target="_blank" rel="noopener">Everything I have built (catalog)</a>
+    </div>
 
     <article class="system" style="margin-top:30px;">
       <div class="system-body">
