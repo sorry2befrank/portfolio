@@ -74,7 +74,7 @@ This repository is written for anyone who wants to know what I can build, techni
 - **Running a business?** [Client work](work/client-work.md), and [work with me](https://understudy.consulting/work-with-me.html) for builds and AI training.
 - **Curious about the idea?** [The North Star](work/north-star.md), then [fly through Voyage](https://voyage.understudy.consulting).
 - **Want to see a whole product I built and run?** [Three Mountaintops World](work/three-mountaintops-world.md), live at [threemountaintops.world](https://threemountaintops.world).
-- **Want the full list?** [Everything I have built](work/catalog.md): 206 of the 221 things, one line each, with an honest status; the rest are private, and the catalog says why.
+- **Want the full list?** [Everything I have built](work/catalog.md): 205 of the 220 things, one line each, with an honest status; the rest are private, and the catalog says why.
 
 ## The scale of it
 
@@ -97,7 +97,7 @@ Full table, with how every figure was measured: **[by the numbers](work/by-the-n
 | **[Cosmic Blueprint](work/cosmic-blueprint.md)** | The seed for someone else's system: a visitor starts from their own seed, with row-level security per account and a cost breaker that denies on any failure. Live at [cosmic-blueprint.org](https://www.cosmic-blueprint.org). |
 | **[Kingdom Within](work/kingdom-within.md)** | The tools behind a research-and-teaching project: checked study notes, a read-only snapshot for Michael, and clips that publish only when the exact approved file still matches. |
 | **[Streams and shorts](work/streams-and-shorts.md)** | Live Presenter, Stream Hub and a clip pipeline that turns a long stream into short vertical clips behind a hash-sealed approval gate. |
-| **[Everything I have built](work/catalog.md)** | The catalog: 206 things, one line each, with an honest status, plus 22 plans. |
+| **[Everything I have built](work/catalog.md)** | The catalog: 205 things, one line each, with an honest status, plus 22 plans. |
 | **[The Orrery](work/orrery.md)** | A control room for a one-person AI operation: it maps every workflow, shows where each one is broken, does bounded work overnight, and refuses to say "working" without a receipt. |
 | **[The Understudy](work/understudy.md)** | An AI agent that starts read-only and must earn every permission on a record checked by someone else. 208 reports, 150 adjudications, 0 confirmed-false, and a ladder it cannot skip. |
 | **[Agent runtime](work/agent-runtime.md)** | Many agents for many customers, with no cross-customer reads, one metered model client and no path to production without a human. Safety rules are tests that are shown to fail. |

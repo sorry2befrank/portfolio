@@ -1,6 +1,6 @@
 # Everything I have built
 
-*Catalog. Counted 2026-11-21 from my own census of every drive and folder. **206 things** that are live, running, built, prototyped or paused, one line each, plus **22 plans**. Most of the source is private; the case studies are the public record. Statuses come from the census and from checks made on 2026-11-20 and 2026-11-21.*
+*Catalog. Counted 2026-11-21 from my own census of every drive and folder. **205 things** that are live, running, built, prototyped or paused, one line each, plus **22 plans**. Most of the source is private; the case studies are the public record. Statuses come from the census and from checks made on 2026-11-20 and 2026-11-21.*
 
 > I am building to a point where I have a personal system that is unique to me, and a skeleton that anyone else can use to create a unique system for themselves.
 >
@@ -31,7 +31,7 @@ Each line reads: **name** — what it is — *status* — the case study that co
 | [Client work](#client-work) | 18 |
 | **All** | **206** |
 
-The census counts 221 things. The 15 not shown here are explained at the [end of the page](#what-is-left-out).
+The census counts 220 things. The 15 not shown here are explained at the [end of the page](#what-is-left-out).
 
 ## Provision
 
@@ -137,10 +137,9 @@ What I would do for free: the Three Mountaintops books and the platform, studio 
 - **Game art generator** — image generation with background removal, plus gallery, crop, logo and icon makers — *built*
 - **Blender asset pipelines** — headless Blender scripts that build environment kits and motion — *prototype*
 
-### The campaign engine
+### Posting, art and merch (built on the campaign engine, listed under Commons)
 
-- **Campaign Engine** — drafts posts into an approval queue, checks them against canon, syncs merch and builds ads paused — *live* — [The campaign engine](three-mountaintops-world.md#the-campaign-engine-posting-without-losing-control)
-- **Social connectors and daily autopost** — one connector interface over the social channels; drafts are checked against canon before anything posts — *live* — [The campaign engine](three-mountaintops-world.md#the-campaign-engine-posting-without-losing-control)
+- **Social connectors and daily autopost** — one connector interface over the social channels; nothing posts until the engine is armed, and the daily Bluesky post is checked against canon first — *live* — [The campaign engine](three-mountaintops-world.md#the-campaign-engine-posting-without-losing-control)
 - **Lore-plate engine** — a canon-gated prompt, then image generation, composition and a scheduled post — *built*
 - **Gallery drip and video intake** — posts gallery art over time and keeps one deduplicated master per uploaded video — *built*
 - **Merch sync and gated ads** — syncs merch from Fourthwall; every ad is created paused behind three gates — *built* — [The campaign engine](three-mountaintops-world.md#the-campaign-engine-posting-without-losing-control)
@@ -242,20 +241,20 @@ Who I am to other people. These lines name features and machinery only: nothing 
 
 Shared tools and infrastructure that every mountain uses.
 
+- **Campaign Engine** — the shared engine under Creation's posting and Provision's founder console and consulting tools: an approval queue, ads built paused, hard budget caps and an audit log — *live* — [The campaign engine](three-mountaintops-world.md#the-campaign-engine-posting-without-losing-control)
 - **Knowledge Library** — a versioned Markdown archive that AI assistants search and cite over MCP, on Cloudflare Workers — *built; public release on GitHub* — [Knowledge Library](knowledge-library.md) · [GitHub](https://github.com/sorry2befrank/knowledge-library)
-- **Skill library** — 71 Claude Code skills I wrote, each a procedure learned from real work, indexed by family — *running* — [Build method: skills and memory](build-method.md#my-own-custom-skills-and-memory)
-- **Scripts shipped inside skills** — 25 small scripts bundled with the skills, including a conflict checker, screenshot capture, a mutation runner and invisible-character scanners — *built*
+- **Skill library** — 71 Claude Code skills that my agents wrote and keep up under my standing rule that a solved problem becomes a skill, each a procedure learned from real work, indexed by family — *running* — [Build method: skills and memory](build-method.md#my-own-custom-skills-and-memory)
+- **Scripts shipped inside skills** — 21 small scripts bundled with the skills, including a conflict checker, screenshot capture, a mutation runner and invisible-character scanners — *built*
 - **Claude Code user hooks** — hooks that nudge me to turn a lesson into a skill and that write the Understudy's pass-down notes — *running*
 - **Context Archive** — proposes pruning an agent's context, with SHA-256 before-and-after proofs and a restore script; live changes are switched off by design — *built*
 - **Personal Brain MCP** — a read-only MCP server over approved notes, with keyword retrieval, citations and golden-set evals — *running; its project-list tool fails today* — [Smaller tools: personal brain MCP](tools.md#personal-brain-mcp-let-several-ai-apps-read-private-notes-safely)
 - **Brain MCP design dossier** — the plan, audit, review, design and work orders behind the brain MCP: specified by one model, built by another, verified by the first — *built*
 - **Shared Brain partner kit** — lets a partner's coding assistant connect to the brain MCP — *built*
-- **Local Computer AI** — a private on-device assistant on a local 8B model, with a file agent that guards paths, backs up first and has no shell, network or delete access — *built*
+- **Local Computer AI** — a private on-device assistant on a local 8B model in a locked-down agent profile; its Auto Writer's file agent guards paths, backs up first and has no shell, web or delete tools — *built*
 - **phone-preview** — shows any page the way a phone sees it: a phone-sized window, a LAN QR code with live reload, a tunnel and screenshots — *built*
-- **scroll-craft** — a skill and engine for scroll-driven landing pages, checked by screenshots in three modes — *built*
 - **understudy-tools** — Playwright and image capture scripts — *built*
 - **Codex automations** — two scheduled automations for my second coding assistant — *paused*
-- **Orrery Night snippet** — a custom Obsidian theme: pillar-coloured callouts and a starfield — *running*
+- **Orrery Night snippet** — my one self-made Obsidian customisation, a CSS snippet on a downloaded theme: pillar-coloured callouts and a starfield — *running*
 
 ## The Orrery
 
@@ -375,7 +374,7 @@ Written down, nothing built. One line each.
 
 **5 plans are not listed.** All five are private: one contains business figures, one involves another party, two are private working notes, and one is private Definition planning (it has a dormant build on an unmerged branch, not switched on).
 
-Also not counted anywhere: copies, worktrees, backups and release builds, and 10 items that are not mine, are not products, or are part of another thing on this list.
+Also not counted anywhere: copies, worktrees, backups and release builds, and 11 items that are not mine, are not products, or are part of another thing on this list.
 
 ## Limits
 
