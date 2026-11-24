@@ -1,6 +1,6 @@
 # Everything I have built
 
-*Catalog. Counted 2026-11-21 from my own census of every drive and folder. **205 things** that are live, running, built, prototyped or paused, one line each, plus **22 plans**. Most of the source is private; the case studies are the public record. Statuses come from the census and from checks made on 2026-11-20 and 2026-11-21.*
+*Catalog. Counted 2026-11-21 from my own census of every drive and folder. **205 things** that are live, running, built, prototyped or paused, one line each, plus **22 plans**. Most of the source is private; the case studies are the public record. Statuses come from the census and from checks made on 2026-11-20 and 2026-11-21, with corrections from a check against the code and records on 2026-11-23.*
 
 > I am building to a point where I have a personal system that is unique to me, and a skeleton that anyone else can use to create a unique system for themselves.
 >
@@ -24,12 +24,12 @@ Each line reads: **name** — what it is — *status* — the case study that co
 | Mountain | Things |
 |---|---|
 | [Provision](#provision) (my own work) | 58 |
-| [Creation](#creation) | 59 |
+| [Creation](#creation) | 58 |
 | [Definition](#definition) | 24 |
 | [Commons](#commons) (shared tools that serve every mountain) | 14 |
 | [The Orrery](#the-orrery) (the skeleton and overseer) | 33 |
 | [Client work](#client-work) | 18 |
-| **All** | **206** |
+| **All** | **205** |
 
 The census counts 220 things. The 15 not shown here are explained at the [end of the page](#what-is-left-out).
 
@@ -39,12 +39,12 @@ How I make a living: the consulting business, its tools, and the engines behind 
 
 ### Consulting, outreach and the business office
 
-- **understudy.consulting** — my consulting site: services, booking and an inquiry form, with Playwright tests — *live* — [understudy.consulting](https://understudy.consulting)
+- **understudy.consulting** — my consulting site: services and classes, calendar booking, class seats and an email list, with Playwright tests — *live* — [understudy.consulting](https://understudy.consulting)
 - **Agency Console** — a private, password-protected command surface for the consulting business: overview, decisions queue, pipeline, lanes, clients and audits — *built* — [The Orrery: the console](orrery.md#2-the-console-decide)
-- **Guarded cold-email outreach operator** — finds and scores prospects, builds a demo site for each and writes call briefs; only one file may send, behind mailbox isolation, a suppression list, a daily cap and a kill switch — *paused since 2026-10-31*
-- **Sales demo site previews** — about 50 redesign previews built for local businesses during outreach — *paused*
+- **Guarded cold-email outreach operator** — an AI researcher finds local businesses with a visible gap and drafts a short email to each; only the operator file sends to prospects, behind mailbox isolation, a suppression list, a daily cap, send windows and a kill switch, and it pauses itself when bounces or spam reports cross set limits (a separate one-off placement test can reach only a fixed list of test inboxes) — *paused since 2026-10-31*
+- **Sales demo site previews** — about 45 redesign previews built for local businesses during outreach, from 2026-07-24 to 2026-08-14, plus five studio pages — *paused*
 - **Governed Email Finder** — reads only a company's own public pages, respects robots.txt and ranks contact candidates by evidence — *built*
-- **Governed Inbound Responder** — drafts a reply, a fit assessment and a follow-up time for each lead, into a local review queue only — *built*
+- **Governed Inbound Responder** — drafts a reply, a fit verdict and an owner summary for each lead, sets a follow-up time 24 hours out, and saves them to a local review queue only; so far it has run on a sample lead only — *built*
 - **Opportunity Scout** — searches boards and forums each morning for live paid-work requests and hands me one file of drafted replies — *running daily*
 - **Category outreach lane** — an outreach campaign for one business category, run through the outreach operator — *paused*
 - **The Secretary** — handles follow-ups, the outbox and notes, twice a day — *running*
@@ -57,23 +57,23 @@ How I make a living: the consulting business, its tools, and the engines behind 
 ### Personal App Engine and the Understudy engine
 
 - **Personal App Engine** — a private, local-first AI app builder: a control plane on SQLite with streamed run events, approval-gated file changes, encrypted secrets and sandboxed previews — *running*
-- **Personal App Engine Desktop ("My Apps")** — a packaged Windows edition with onboarding, a startup doctor, a signed update channel and an offline renderer for starter apps — *built*
+- **Personal App Engine Desktop ("My Apps")** — a Windows edition with bring-your-own-key setup, a startup doctor and a file-integrity check, packaged as an internal installer that is unsigned and not released; the newer built-in "My Apps" engine for starter apps is not yet packaged — *built*
 - **Engine console bridge** — relays build runs between the founder consoles and the engine — *running*
 - **Engine sales and legal pages** — sales, terms, privacy and support pages for the desktop edition — *built; not confirmed live*
 - **Engine integration, Orrery side** — a client that requests and tracks engine builds for the founder consoles — *prototype*
 - **Earlier app-builder build** — a describe-an-app, an-agent-builds-it app on my other laptop; it may be an earlier form of the Personal App Engine — *reported working; on another machine, not examined*
 - **Understudy founder console and engine** — per-founder threads, plans and change requests encrypted at rest, plus a guide, a builder sandbox and a verifier — *live, gated* — [Agent runtime](agent-runtime.md)
 - **Agent core, planner and proposer** — a tool-using agent with a critic, a planner that reads 11 capability specs, and a proposer — *built* — [Agent runtime: how it works](agent-runtime.md#how-it-works)
-- **Forge PR writer and agent manifests** — agents defined as JSON manifests; the Forge turns approved change requests into pull requests only — *prototype* — [Agent runtime: how it works](agent-runtime.md#how-it-works)
+- **Forge PR writer and agent manifests** — agents defined as JSON manifests; the Forge turns approved change requests into pull requests and never merges them, and publishing is a separate step that waits for an explicit approval and a working preview — *prototype* — [Agent runtime: how it works](agent-runtime.md#how-it-works)
 - **Brain knowledge layer** — global and per-tenant retrieval indexes, knowledge cards and an eval harness — *built* — [Agent runtime: how it works](agent-runtime.md#how-it-works)
-- **Engine constitution** — 10 architecture laws written as tests, with a mutation script that proves each one can fail — *built* — [Agent runtime: rules that are tests](agent-runtime.md#rules-that-are-tests)
-- **Understudy Execution Layer** — a contract-first, sandboxed code-execution service with swappable sandbox backends — *prototype* — [Agent runtime: how it works](agent-runtime.md#how-it-works)
+- **Engine constitution** — architecture laws written as 13 test files, with a mutation script whose 14 mutators break a copy of the code and expect each law to fail — *built* — [Agent runtime: rules that are tests](agent-runtime.md#rules-that-are-tests)
+- **Understudy Execution Layer** — a contract-first, sandboxed code-execution service built to swap sandbox backends; only one backend is implemented so far — *prototype* — [Agent runtime: how it works](agent-runtime.md#how-it-works)
 - **Members knowledge intake** — keeps each member's writing sealed to that member's own retrieval scope, checked by a no-leakage eval — *running*
 - **Founder invite generator** — builds personalised join pages — *built*
 
 ### The audit toolkit
 
-- **Client Audit Engine** — three model families inspect the same frozen snapshot of a business and cross-check each other's findings; it has no way to deliver anything — *built*
+- **Client Audit Engine** — two model families, Claude and an OpenAI model, audit the same hashed, read-only snapshot of a client's files and cross-check each other's findings, and a local model gives an advisory verdict on disputes; it has no way to deliver anything, and so far it has run on sample data only — *built*
 - **Audit Presentation Package** — offline single-file decks for a local business, driven by one config block, that print to a leave-behind PDF — *built*
 - **Understudy Audit** — an offline phone app for running business audits; saved audits stay on the device and it cannot send — *live* — [Smaller tools: Understudy Audit](tools.md#understudy-audit-a-business-audit-app-that-works-offline)
 - **Audit research service** — a Cloudflare Worker that keeps the map key away from the public app and returns source-linked findings, storing nothing — *live* — [Smaller tools: Understudy Audit](tools.md#understudy-audit-a-business-audit-app-that-works-offline)
@@ -82,7 +82,7 @@ How I make a living: the consulting business, its tools, and the engines behind 
 ### Teaching
 
 - **Understudy Training** — an eight-lesson AI course for organisations that works on the platforms they already use — *built*
-- **Public classes** — AI Basics and a 30-day workshop: run-of-show, Live Presenter decks, workbooks and starter prompts — *built; the first class is on 2026-11-22*
+- **Public classes** — AI Basics and a 30-day workshop: run-of-show, Live Presenter decks, workbooks and starter prompts — *built; the first class, AI Basics, is on 2026-12-13*
 - **"AI for your business" deck** — a Live Presenter deck for business owners — *built*
 - **Workshop trailers and class marketing** — trailer cuts for wide, Instagram and phone, with flyers and social images — *built*
 - **Local AI setups sheet** — what each local-AI setup needs, with the sourced hardware research behind it — *built*
@@ -90,8 +90,8 @@ How I make a living: the consulting business, its tools, and the engines behind 
 
 ### Showcase sites, decks and collateral
 
-- **Employer Systems Lab** — a Three.js voyage past five fictional capability worlds, each opening a working synthetic lab of approvals, refusals and failures — *built*
-- **The Ascent** — a cinematic showcase with a working fictional studio site and six exhibits — *built; release not confirmed*
+- **Employer Systems Lab** — a Three.js voyage past five fictional destinations, a departure point and four capability worlds, each opening a working synthetic lab of approvals, refusals and failures — *built*
+- **The Ascent** — a cinematic showcase with a working fictional studio site and six exhibits — *live at descent.understudy.consulting (answered on 2026-11-21)*
 - **Systems stations** — five interactive stations that each operate a cleaned-up piece of the governed systems — *prototype*
 - **Proof Reel** — a self-playing three-minute reel of the governed AI loop, narrated in my cloned voice — *built*
 - **Understudy Voyage intro, first version** — a React Three Fiber space-journey intro — *paused; replaced by Voyage*
@@ -139,7 +139,7 @@ What I would do for free: the Three Mountaintops books and the platform, studio 
 
 ### Posting, art and merch (built on the campaign engine, listed under Commons)
 
-- **Social connectors and daily autopost** — one connector interface over the social channels; nothing posts until the engine is armed, and the daily Bluesky post is checked against canon first — *live* — [The campaign engine](three-mountaintops-world.md#the-campaign-engine-posting-without-losing-control)
+- **Social connectors and daily autopost** — one connector interface over the social channels; nothing posts on its own until the engine is armed (I can still publish a reviewed draft by hand), and the daily Bluesky post passes an advisory canon check first — *live* — [The campaign engine](three-mountaintops-world.md#the-campaign-engine-posting-without-losing-control)
 - **Lore-plate engine** — a canon-gated prompt, then image generation, composition and a scheduled post — *built*
 - **Gallery drip and video intake** — posts gallery art over time and keeps one deduplicated master per uploaded video — *built*
 - **Merch sync and gated ads** — syncs merch from Fourthwall; every ad is created paused behind three gates — *built* — [The campaign engine](three-mountaintops-world.md#the-campaign-engine-posting-without-losing-control)
@@ -173,7 +173,7 @@ What I would do for free: the Three Mountaintops books and the platform, studio 
 - **Authors Codex** — a writer's workspace for long fiction, with privacy enforced in the database — *live* — [Authors Codex](authors-codex.md)
 - **Authors Codex Desktop** — the local-first Windows edition, with encrypted SQLite and two-way sync with the web app; 216 tests passing at last record — *built*
 - **Character Identity Studio** — face cards, canon locks and age eras inside Authors Codex — *live*
-- **Content Psychology Studio** — emotion reports on video frames or prose, with a compare mode, metering and evals — *live* — [brain-content-studio.vercel.app](https://brain-content-studio.vercel.app)
+- **Content Psychology Studio** — emotion reports on video frames or prose, with a compare mode, optional usage metering and a separate eval harness — *live* — [brain-content-studio.vercel.app](https://brain-content-studio.vercel.app)
 - **The Director** — the Creation boss persona: production manager and canon guardian; it never drafts prose — *running* — [The North Star](north-star.md#each-mountains-own-north-star)
 - **Three Mountaintops wing** — four painted rooms and a gallery inside Voyage — *live*
 
@@ -184,18 +184,18 @@ What I would do for free: the Three Mountaintops books and the platform, studio 
 > *Spoken, 2026-11-21.*
 
 - **Daily shorts lane** — the planning workspace for a daily short-video lane, and the folder that holds the streaming tools — *running* — [Streams and shorts](streams-and-shorts.md)
-- **Live Presenter** — my presentation desk: Markdown decks with private notes, a clean audience window for Zoom, OBS stages, and stream analytics import — *running; my class tool since 2026-11-02* — [Live Presenter](streams-and-shorts.md#live-presenter)
+- **Live Presenter** — my presentation desk: Markdown decks with private notes, a clean audience window for Zoom, OBS stages, and stream analytics import — *built; chosen on 2026-11-02 as the tool for my classes, the first of which is on 2026-12-13* — [Live Presenter](streams-and-shorts.md#live-presenter)
 - **Presenter agent plugin** — packages Live Presenter so an AI assistant can open decks, change slides and reach the studio over MCP — *built; not installed or published* — [The plugin](streams-and-shorts.md#the-plugin-and-its-studio-tools)
 - **Class intro presentation kit** — a complete Live Presenter talk with a rehearsal kit — *built*
 - **Live & Clips** — my local hub for reviewing and publishing clips from recorded talks and streams; a clip is sealed by hash when it is approved — *running* — [Streams and shorts](streams-and-shorts.md#live--clips-the-approval-gate) · [Kingdom Within](kingdom-within.md#live--clips-the-studio)
 - **YouTube publishing** — uploads one approved clip at a time; any edit after approval blocks the upload, and tokens are encrypted on disk — *built and connected* — [Kingdom Within](kingdom-within.md#publishing-to-youtube-only-with-approval)
 - **Stream Studio** — topic folders and playlists for future streams, with an offline transcription worker that proposes clips — *built; automatic publishing is off* — [Kingdom Within](kingdom-within.md#stream-studio-topics-and-the-publishing-queue)
 - **Research board and phone hand-offs** — a private research board behind an approval gate — *built*
-- **Stream Hub** — one local page that starts and stops my multistream and the recording through OBS, with stream keys encrypted — *running since 2026-09-28* — [Stream Hub](streams-and-shorts.md#stream-hub)
-- **Clip pipeline** — turns a long stream recording into short captioned vertical clips and a review page — *prototype; proven on one stream* — [From stream to clips](streams-and-shorts.md#from-stream-to-clips)
+- **Stream Hub** — one local page that starts and stops my multistream and the recording through OBS, with stream keys encrypted — *built 2026-09-22; the multistream setup it drives is recorded as running since 2026-09-28* — [Stream Hub](streams-and-shorts.md#stream-hub)
+- **Clip pipeline** — turns a long stream recording into short captioned vertical clips and a review page — *prototype; run once, on one stream (2026-09-29), and its six clips are waiting for my picks* — [From stream to clips](streams-and-shorts.md#from-stream-to-clips)
 - **TikTok streams and clips** — I stream live on TikTok and cut clips from the streams — *running; clips are posted by hand* — [From stream to clips](streams-and-shorts.md#from-stream-to-clips)
-- **Shorts Studio** — script, canon gate, narration in my cloned voice, images and a local render into a vertical short — *built* — [A shorts pipeline](production-studio.md#a-shorts-pipeline)
-- **Three Mountaintops Shorts** — nine finished shorts on the Three Mountaintops YouTube channel — *live* — [A shorts pipeline](production-studio.md#a-shorts-pipeline)
+- **Shorts Studio** — script, canon gate, narration in a local Kokoro voice rather than my cloned voice, images and a local render into a vertical short — *built* — [A shorts pipeline](production-studio.md#a-shorts-pipeline)
+- **Three Mountaintops Shorts** — nine finished shorts on the Three Mountaintops YouTube channel, and six more uploaded on 2026-11-22 and scheduled for 2026-11-25 to 2026-12-13 — *live* — [A shorts pipeline](production-studio.md#a-shorts-pipeline)
 
 ## Definition
 
@@ -217,7 +217,7 @@ Who I am to other people. These lines name features and machinery only: nothing 
 - **Early engine drafts** — first drafts of Michael's relocation map, numerology and timing engines — *paused; the live versions are inside Michael*
 - **Colour codex (Lumen)** — an earlier colour codex app; the codex now sits in Michael's chart suite — *paused*
 - **Lunar practice planner** — an earlier stand-alone lunar planner; Michael has its own — *paused*
-- **Interfaith Library** — a comparative encyclopedia of concepts, symbols and practices across ten traditions and four non-religious lenses, with search, compare and a graph view; Michael cites it — *live* — [The Interfaith Library](michael.md#the-interfaith-library)
+- **Interfaith Library** — a comparative encyclopedia of concepts, symbols and practices across ten traditions, with four non-religious lenses on some entries, plus search, compare and a graph view; Michael cites it — *live* — [The Interfaith Library](michael.md#the-interfaith-library)
 
 ### Cosmic Blueprint, the seed for someone else's system
 
@@ -241,11 +241,11 @@ Who I am to other people. These lines name features and machinery only: nothing 
 
 Shared tools and infrastructure that every mountain uses.
 
-- **Campaign Engine** — the shared engine under Creation's posting and Provision's founder console and consulting tools: an approval queue, ads built paused, hard budget caps and an audit log — *live* — [The campaign engine](three-mountaintops-world.md#the-campaign-engine-posting-without-losing-control)
-- **Knowledge Library** — a versioned Markdown archive that AI assistants search and cite over MCP, on Cloudflare Workers — *built; public release on GitHub* — [Knowledge Library](knowledge-library.md) · [GitHub](https://github.com/sorry2befrank/knowledge-library)
+- **Campaign Engine** — the shared engine under Creation's posting and Provision's founder console and consulting tools: an approval queue, ads built paused, hard budget caps on ad spend and an audit log — *live* — [The campaign engine](three-mountaintops-world.md#the-campaign-engine-posting-without-losing-control)
+- **Knowledge Library** — a versioned Markdown archive that AI assistants search and cite over MCP, built for Cloudflare Workers; the public release is tested on synthetic data only — *built; deployed privately as a supervised pilot on 2026-10-20, not publicly; public release on GitHub* — [Knowledge Library](knowledge-library.md) · [GitHub](https://github.com/sorry2befrank/knowledge-library)
 - **Skill library** — 71 Claude Code skills that my agents wrote and keep up under my standing rule that a solved problem becomes a skill, each a procedure learned from real work, indexed by family — *running* — [Build method: skills and memory](build-method.md#my-own-custom-skills-and-memory)
 - **Scripts shipped inside skills** — 21 small scripts bundled with the skills, including a conflict checker, screenshot capture, a mutation runner and invisible-character scanners — *built*
-- **Claude Code user hooks** — hooks that nudge me to turn a lesson into a skill and that write the Understudy's pass-down notes — *running*
+- **Claude Code user hooks** — hooks that nudge my agents to turn a lesson into a skill and that write the Understudy's pass-down notes — *running*
 - **Context Archive** — proposes pruning an agent's context, with SHA-256 before-and-after proofs and a restore script; live changes are switched off by design — *built*
 - **Personal Brain MCP** — a read-only MCP server over approved notes, with keyword retrieval, citations and golden-set evals — *running; its project-list tool fails today* — [Smaller tools: personal brain MCP](tools.md#personal-brain-mcp-let-several-ai-apps-read-private-notes-safely)
 - **Brain MCP design dossier** — the plan, audit, review, design and work orders behind the brain MCP: specified by one model, built by another, verified by the first — *built*
@@ -262,32 +262,32 @@ The skeleton and overseer: the system that watches, routes and improves everythi
 
 ### The control room
 
-- **The Orrery** — a local control room that scans every project on my drive, sorts each onto a mountain and shows the whole body of work as a table, an orrery and a 3D universe — *running, local only* — [The Orrery](orrery.md)
+- **The Orrery** — a local control room that scans every project on my drive, sorts each onto a mountain and shows the whole body of work as a table, an orrery and a 3D universe — *running on my own machine; not hosted* — [The Orrery](orrery.md)
 - **The Armillary** — the autonomous nightly crew: a chain of scheduled stages with watchdogs, scoped breakers and receipts — *running* — [The nightly chain](orrery.md#4-the-nightly-chain)
-- **System Atlas and Diagnosis** — a generated map of stages, stores and flows; the Diagnosis traces a broken flow to its root cause — *running* — [The Atlas and the Diagnosis](orrery.md#1-the-atlas-and-the-diagnosis-observe)
+- **System Atlas and Diagnosis** — a generated map of stages, stores and flows; the Diagnosis checks each designed flow against what really ran and points at the first step where work stopped — *running* — [The Atlas and the Diagnosis](orrery.md#1-the-atlas-and-the-diagnosis-observe)
 - **Master console and boss consoles** — a board of lanes and a decision queue, with a room console for each boss persona and each browser paired once — *running* — [The console](orrery.md#2-the-console-decide)
-- **The Bridge** — a Ctrl+K command deck: an agent over about 20 commands, with a human-only ARMED switch and an append-only audit log — *built*
+- **The Bridge** — a Ctrl+K command deck: an agent over 33 tools, an ARMED switch the agent has no tool to flip, and an append-only audit log — *built; unused since 2026-08-13*
 - **Watch, Lessons Ledger and Snapshots** — a free local efficiency sweep, an append-only lessons ledger, snapshots with diffs and an "are we improving?" report — *built*
-- **Orrery Auditor** — a deterministic witness that scores operating health and drafts proposals that cannot run; no model calls, no network, no write access — *built*
-- **Corrector and Ripple Watch** — finds stale facts and dead references across my folders; each fix passes a citation gate and is applied with a backup and a reversal ledger — *running*
+- **Orrery Auditor** — a deterministic witness that gives a verdict code on operating health, not a score (on purpose), and drafts a proposal that cannot run; no model calls, no network, and it writes only inside its own reports folder, never into the Orrery — *built; run by hand, last on 2026-08-05* — [Smaller tools: Orrery Auditor](tools.md#orrery-auditor-a-witness-that-cannot-change-what-it-watches)
+- **Corrector and Ripple Watch** — finds stale facts and dead references across my folders; each confirmed fix passes a canon gate and is applied with a byte-exact backup and a reversal ledger — *running; the nightly corrector stage itself has been off since 2026-11-20*
 - **Coordination runtime** — routes each task to its folder and boss, with a journaled controller and managed git transactions — *built; mostly not switched on*
-- **Durable queue and job host** — a pg-boss queue on embedded PGlite under the nightly crew, and a Windows job-object host that contains and kills process trees — *built*
+- **Durable queue and job host** — a pg-boss queue on embedded PGlite, built as a mirror of the nightly crew's work orders and switched off (the work-order files stay the record), and a Windows job-object host that contains and kills process trees: the hand-off engine runs each Codex build inside it, while the nightly crew still defaults to a plain process-tree kill — *built; the queue is not switched on*
 - **Weekly rhythm** — a daily gathering, a Sunday run and a month-end synopsis — *built; not switched on*
 - **Private Project Sorter** — a loopback-only tool for sorting projects into domains; it cannot move folders, write assignments or call models — *built*
 - **The Observatory** — the Orrery inside Obsidian: a hub note, a note per project, a canvas map and a table — *built*
-- **Orrery written corpus** — the documents about the system, including The Reading, in which 35 agents read the whole drive — *built*
-- **Workspace launcher and host scripts** — the desktop launcher, app registration and scripts that pause and resume the fleet — *running*
+- **Orrery written corpus** — the documents about the system, including The Reading, in which 35 agents (31 readers, 3 synthesis lenses and a weaver) read and summed up the whole drive — *built*
+- **Workspace launcher and host scripts** — the desktop launcher and the app registration, both in use, a wake-settings fix, and the scripts behind a one-time pause and resume of the night jobs (2026-10-02 to 2026-10-07) — *running*
 - **Forge skills, commands and start-up hooks** — six forge skills, six workspace commands and two hooks that show the nightly report and hand-off notices — *running*
 - **Orrery Workforce VS Code extension** — a local cockpit that checks the Orrery's identity and binds each approval to the origin that prepared it — *built*
 
 ### The Understudy and the build loop
 
-- **Understudy local runtime** — the nightly sweep, the mechanical trust ledger that gates the Write rung, and adjudication — *running* — [The Understudy: how it works](understudy.md#how-it-works)
+- **Understudy local runtime** — the nightly sweep, the mechanical trust ledger that gates the Write rung, and adjudication — *running; since 2026-11-06 each adjudication run has stopped at an error* — [The Understudy: how it works](understudy.md#how-it-works)
 - **Understudy trust ladder** — work orders, stall diagnosis and a capability-reduced repair lane that can only leave a verified review branch — *running* — [The ladder](understudy.md#the-ladder)
 - **Understudy weekly verification** — fixture building, mutation tests and parse checks that verify the Understudy each week — *running*
-- **The Rehearsal** — a training ground where agents try real tasks in a sandbox and a gate plus a cross-family jury grades them — *running* — [The engine](orrery.md#3-the-engine-execute)
+- **The Rehearsal** — a practice ground where a read-only agent proposes a skill for a real blocked task, and a citation gate plus a jury of local models from another model family grades it against the current best — *running* — [The engine](orrery.md#3-the-engine-execute)
 - **Standing approval** — lets one standing rule replace routine acceptance, only for work that was ordered, is reversible, stays private and is independently verified — *built; not switched on*
-- **Claude–Codex hand-off engine** — one model writes the build ticket, a second builds it in a sandbox that allows only listed checks, and the first reviews the result — *running* — [The two-model split](build-method.md#the-two-model-split)
+- **Claude–Codex hand-off engine** — one model writes the build ticket, a second builds it in a sandbox that confines its writes and runs only listed checks, and the first reviews the result — *built; run by hand, last used 2026-10-18* — [The two-model split](build-method.md#the-two-model-split)
 - **Personal Forge** — a headless builder with no shell that writes code and tests into an isolated branch for me to diff, then merge or reject — *built*
 - **Opportunity scout and Jev shadow lanes** — finds model calls a small judgment model could take over, and tests it against the larger model step by step — *running* — [A small judgment model](tools.md#using-a-small-judgment-model-with-limits)
 - **ROG local model worker** — scripts that turn a second laptop into a private local-model worker, with its firewall limited to the controller — *built*
@@ -306,24 +306,24 @@ The skeleton and overseer: the system that watches, routes and improves everythi
 
 Described by what each one does. Clients are not named, except Cosmic Atlas.
 
-- **Live client app rescue** — diagnosed and repaired a live application the client owns — *built* — [Client work: the rescue](client-work.md#1-rescuing-a-live-client-owned-application)
+- **Live client app rescue** — diagnosed and repaired the matching in a client's live no-code dating app: a same-city filter broken by free-typed city names, and a compatibility score that compared answer IDs with answer text — *built* — [Client work: the rescue](client-work.md#1-rescuing-a-live-client-owned-application)
 - **Cosmic Atlas** — a creator's astrology web app, built end to end: charts, relocation maps, compatibility, tarot and lunar tools — *live* — [Client work: Cosmic Atlas](client-work.md#2-building-a-clients-astrology-product-end-to-end-cosmic-atlas)
-- **Mobile matching app** — a production-grade mobile matching app and operator console, with deny-by-default row-level security, versioned matching and a double-entry ledger — *running, in pilot*
+- **Mobile matching app** — a production-grade matching app for phone and web and an operator console, with deny-by-default row-level security, versioned matching and a double-entry ledger — *running, in pilot: live on the web since 2026-10-13; the phone store build began on 2026-11-23*
 - **Logo-motion pipeline** — headless Blender renders of the matching app's brand motion clips, graded and encoded for the app — *built*
 - **Matching app design canvases** — clickable design canvases in three themed directions — *built*
 - **Reviewed-SQL runner** — a hash-pinned SQL runner for a development database, with TLS checks and proof scripts — *built*
-- **Booking and client-care platform** — client and provider sides, bookings, a care portal and consented reminders, handed over in full to the owner; 257 tests — *live*
-- **Bulk video upload** — resumable browser-to-storage uploads of large videos for a fitness founder — *built*
-- **Nonprofit site with a self-serve editor** — a static site with a browser editor and a check that blocks unconfirmed claims — *live*
-- **Artist console** — a local-first console for shows, releases and a daily record — *built*
+- **Booking and client-care platform** — client and provider sides, bookings, a care portal and consented reminders; the complete source hand-off went to the owner with 257 tests passing in each database mode, while account and domain transfers were still open — *live for the waitlist; the app is admin-only until launch* — [Client work: the booking platform](client-work.md#3-a-booking-and-client-care-platform-for-a-booking-studio)
+- **Bulk video upload** — resumable browser-to-storage uploads of large videos for a fitness founder — *live (last checked 2026-08-22)* — [Client work: bulk video upload](client-work.md#4-bulk-video-upload-for-a-fitness-founder)
+- **Nonprofit site with a self-serve editor** — a static site with a browser editor; publishing refuses wording that would falsely claim tax-exempt status, and a pre-deploy check, run by hand, does the same — *live; at last record (2026-09-21) the editor was still waiting on two credentials* — [Client work: the nonprofit site](client-work.md#5-a-nonprofit-site-the-founder-can-edit-herself)
+- **Artist console** — a local-first console for shows, releases and a daily record — *built* — [Client work: the musician's console](client-work.md#7-a-private-console-for-a-musician)
 - **Musician fan-platform mockup** — a front-end mockup with sample content — *prototype*
 - **Coaching landing page** — a single landing page — *built*
 - **Founder-owned posting service** — fans one video out to several social platforms from the founder's own hosting account — *built*
 - **Communication Archive** — organises years of audio recordings into a local, dated, searchable archive — *built*
-- **Barbershop and salon website** — booking and member pages, an owner guide and a go-live kit — *built*
-- **Small-business modules in the campaign engine** — bookings, commerce, an AI receptionist and multi-tenant client sites — *live*
+- **Barbershop and salon website** — booking and member pages, an owner guide and a go-live kit — *live on the client's own domain (verified 2026-10-02)* — [Client work: the barbershop site](client-work.md#6-a-booking-website-for-a-barbershop)
+- **Small-business modules in the campaign engine** — bookings, commerce, an AI receptionist and a multi-tenant framework that builds preview sites for other local businesses — *live*
 - **Founders vault system** — a per-founder folder template, generator and resync tools for a small founders program — *running*
-- **Client audit deliverables** — a fee review, a sample audit report and a template — *built*
+- **Client audit deliverables** — a fee-and-savings explainer, a sample audit report and a fill-in template — *built* — [Client work: audit deliverables](client-work.md#8-audit-deliverables)
 
 ## Planned
 
@@ -363,7 +363,7 @@ Written down, nothing built. One line each.
 
 ## What is left out
 
-**15 built things are not listed**, of the 221 the census counts:
+**15 built things are not listed**, of the 220 the census counts:
 
 - **4 Definition items.** Two are personal writing (a log and a guide), which is content rather than machinery. Two are folders whose contents were never opened, so I cannot describe them truthfully.
 - **3 pieces of client work.** Two hold the client's private business detail; one involves students.
@@ -378,7 +378,7 @@ Also not counted anywhere: copies, worktrees, backups and release builds, and 11
 
 ## Limits
 
-- **Statuses are as of 2026-11-20 and 2026-11-21.** The census of 2026-11-20 fetched no live URLs. Some live sites were checked on 2026-11-21 for the case studies; not every line was re-checked for this page.
+- **Statuses are as of 2026-11-20 and 2026-11-21, with corrections from 2026-11-23.** The census of 2026-11-20 fetched no live URLs. Some live sites were checked on 2026-11-21 for the case studies. On 2026-11-23 many lines were checked against the code and records, without fetching any live URL. Not every line was re-checked for this page.
 - **"Running" means in use, not public.** Most running things live on my own machine or behind a sign-in, so there is nothing to click.
 - **Definition and client lines say what a thing does, not what is in it.** That is deliberate.
 - **The count is of things, and the edges are judgment calls.** Where one thing could be split in two, or two merged into one, I followed the census.

@@ -1,6 +1,6 @@
 # Three Mountaintops: the platform I built
 
-*Case study. Live: [threemountaintops.world](https://threemountaintops.world). The game: [path.threemountaintops.world](https://path.threemountaintops.world) (member-gated). Merch: [the Fourthwall store](https://three-mountaintops-shop.fourthwall.com). Source is private. Figures measured 2026-11-21. This page covers the platform, not the story: I write every word of the books myself, and nothing here describes their content beyond what the public homepage already shows.*
+*Case study. Live: [threemountaintops.world](https://threemountaintops.world). The game: [path.threemountaintops.world](https://path.threemountaintops.world) (member-gated). Merch: [the Fourthwall store](https://three-mountaintops-shop.fourthwall.com). Source is private. Figures measured 2026-11-21 and corrected after a second check against the code on 2026-11-23. This page covers the platform, not the story: I write every word of the books myself, and nothing here describes their content beyond what the public homepage already shows.*
 
 > my own platform I made. Complete with merch sales. That I built myself.
 >
@@ -18,20 +18,20 @@ The book series shares its name with my [north star](north-star.md). It is the p
 
 The Three Mountaintops is a four-book series. In the homepage's words: "A four-book journey through identity, shadow, power, and the worlds within us."
 
-Around the books I built the place where readers meet them: a reading site and living codex of the world, an open discussion hub, films, an art gallery, a game, a member portal and a merch shop. Two parts run on outside services: **Patreon** takes membership payments and sign-in, and **Fourthwall** handles merch checkout and makes each piece to order. The rest is mine: the site, the forum, the game, the member gate, the lore chat, the posting engine and the studio that makes the art and films.
+Around the books I built the place where readers meet them: a reading site and living codex of the world, an open discussion hub, films, an art gallery, a game, a member portal and a merch shop. Two parts run on outside services: **Patreon** takes membership payments and sign-in, and **Fourthwall** handles merch checkout and makes each piece to order. The rest is mine: the site, the forum, the game, the member gate, the lore chat, the posting engine and the studio that makes the art and films. AI coding agents (Claude Code and Codex) wrote most of that code under my direction, as described in the [build method](build-method.md).
 
 ## The parts
 
 | Part | What it does | Built with | Status, 2026-11-21 |
 |---|---|---|---|
 | **Living Codex** (the site) | Reading, plus a codex of the world: chapters, characters, world, locations, weapons, parables, gallery, films | Static HTML, JS and CSS with a Node build step, on Vercel; serverless functions for sign-in and the codex | **Live.** The codex is in open mode: public except entries marked early access. |
-| **The Gathering** (discussion hub) | Theories and questions about the world. The site says reading and posting need no sign-up | Supabase Postgres, row-level security on every table | **Built**, live since 2026-08-20. On 2026-11-21 it did **not load** for visitors: its database backend was unreachable. |
+| **The Gathering** (discussion hub) | Theories and questions about the world. The site says reading and posting need no sign-up | Supabase Postgres, row-level security on every table | **Built**, live since 2026-08-20. In a live check on 2026-11-21 it did **not load** for visitors: the page could not reach its database backend. Not re-checked since. |
 | **Films** | 6 public films: the series in sixty seconds, then one film each for Chapters One to Five | Made in [the Studio](production-studio.md), listed in the site's public trailer data | **Live**, public |
 | **Gallery** | 325 art entries in 5 sections, each with a title and a type (scene, character, location, creature, weapon) | Filed and published through the studio's sorter | **Live**, public |
 | **The Path** (the game) | Walk the kingdom of Veshara; tactical grid combat | Godot 4.6 web export; a Three.js combat renderer; a Vercel Edge gate | **Member-gated** (top Patreon tier). A free public beta ran 2026-09-10 to 2026-10-16 and has ended. |
-| **Member portal and lore chat** | Patreon sign-in, one signed cookie shared across the platform's subdomains, and a lore chat whose retrieval index is filtered by the member's tier | Vercel functions and Vercel Blob; OpenAI embeddings for retrieval, the Anthropic API for answers | **Member-gated** |
+| **Member portal and lore chat** | Patreon sign-in with one signed cookie shared across the platform's subdomains (the codex site keeps its own, separate sign-in), and a lore chat whose retrieval index is filtered by the member's tier | Vercel functions and Vercel Blob; OpenAI embeddings for retrieval, the Anthropic API for answers | **Member-gated** |
 | **The Lane** and the store | The merch shop, written in the world's voice: 15 products in 5 "stalls" on the site; 21 products on the Fourthwall store | Site section that links each product to Fourthwall for checkout | **Live**, public |
-| **Campaign engine** | Drafts posts into an approval queue (up to one per enabled platform a day), checks the daily Bluesky post against the canon, turns new Fourthwall merch into drafts, and builds Meta ads paused | Express 4 and node-cron, a Render web service; a separate private repository | **Built.** Nothing posts until the engine is armed; then the daily Bluesky post, an optional gallery drip and approved, armed campaigns can post; everything else waits for review. Live state not re-checked for this page. |
+| **Campaign engine** | Drafts posts into an approval queue (up to one per enabled platform a day), checks the daily Bluesky post against the canon, turns new Fourthwall merch into drafts, and builds Meta ads paused | Express 4 and node-cron, a Render web service; a separate private repository | **Built.** Nothing posts on its own until the engine is armed; then the daily Bluesky post, an optional gallery drip and approved, armed campaigns can post; everything else waits for a person to review and publish it. Live state not re-checked for this page. |
 | **The Studio** | Where the art and trailers are made | Local Node server, ffmpeg, Blender scripts | **Built, local-only.** See [Production studio](production-studio.md). |
 
 ## How it fits together
@@ -50,7 +50,7 @@ Around the books I built the place where readers meet them: a reading site and l
                   lore chat (tier-filtered)     The Path: Godot web build;
                                                 an Edge gate checks the cookie
 
-   Campaign engine (Render): daily drafts --> approval queue;  Fourthwall --> merch posts
+   Campaign engine (Render): daily drafts --> approval queue;  Fourthwall --> merch drafts
 ```
 
 ## The Gathering: the hub
@@ -61,9 +61,9 @@ Around the books I built the place where readers meet them: a reading site and l
 
 ![The Gathering invite on the homepage, with the merch shop below](../img/tmw-gathering.png)
 
-The forum has boards, threads, replies, votes and reports. Sign-in is optional, by an email magic link; a visitor can post as a "Wanderer" without one. The database enforces ownership: row-level security is on for every table in the schema (the 6 forum tables and one more), people can change or delete only their own rows (staff can override), and a policy blocks replies to locked threads.
+The forum has boards, threads, replies, votes and reports. An email magic-link account is optional. A visitor can post as a "Wanderer" with no email and no form: the browser quietly opens an anonymous Supabase session, so even a Wanderer has a real user id for row-level security to check. The database enforces ownership: row-level security is on for every table in the schema (the 6 forum tables and one more), people can change or delete only their own rows (staff can override), and a policy blocks replies to locked threads.
 
-**Honest status:** on 2026-11-21 the forum body showed "Couldn't load the Gathering" for visitors, because its database backend could not be reached. The code and schema are built; the service needs restoring. Threads tied to codex entries ("Discuss this") are **not built**: the schema has a column ready for it and no code uses it yet.
+**Honest status:** when I checked the live site on 2026-11-21, the forum body showed "Couldn't load the Gathering" for visitors; the page could not reach its database backend. I have not re-checked it since. The code and schema are built; if it is still down, the backend needs restoring. Threads tied to codex entries ("Discuss this") are **not built**: the schema has a column ready for it and no code uses it yet.
 
 ## Films and gallery
 
@@ -89,11 +89,11 @@ The gallery shows 325 art entries in 5 sections, with a search box. The images a
 
 *Painted environment, 2026-10-11, cropped to keep story text out.*
 
-The site's game page says it changes every week. The code record is slower: the last published release in the repository is from 2026-09-14, and the last game commit is from 2026-10-15.
+The site's game page says it changes every week. The code record is slower: on the main branch the last production release is from 2026-10-15, and the last change to the game's own code is from 2026-10-11.
 
 - **Engine:** Godot 4.6 with a web export. 254 GDScript files, 39,385 lines; 38 scenes; 396 commits.
-- **Tests:** 103 test files with 2,732 assertions. I did not run them for this page (Godot is not installed on the machine I measured from).
-- **Combat:** a separate Three.js renderer. The Godot game opens it through its JavaScript bridge. 130 files and 14,676 lines including the Blender Python; its 18-file Node suite ran 161 tests, all passing, on 2026-11-21.
+- **Tests:** 103 test files with 2,732 `check(` calls in the source. Checks inside loops run many times: one native gate run recorded with the 2026-10-15 release executed 14,194 assertions with 0 failures. I did not run them for this page (Godot is not installed on the machine I measured from).
+- **Combat:** a separate Three.js renderer. The Godot game opens it through its JavaScript bridge. 130 files and about 14,700 lines of code, including the Blender Python; its 18-file Node suite ran 161 tests, all passing, on 2026-11-21.
 - **Release:** a packager records a SHA-256 hash for every runtime file in a release manifest. The large game data file is served from Vercel Blob. 24 release tests, all passing.
 - **The gate:** Vercel Edge middleware checks the signed session cookie (HMAC-SHA-256) on every route of the game host and lets only the top tier through; everyone else is redirected to a locked page. It fails open by design: if its secret is missing or it hits an error, it lets the request through, so it can never break the deploy. On 2026-11-21 it was on and redirecting logged-out visitors.
 
@@ -105,7 +105,7 @@ The site's game page says it changes every week. The code record is slower: the 
 
 The books are open on purpose. In my words: "the books in the site that anyone that comes to my live site can review it. And anyone that is on the Patreon can still subscribe, but for this live site, I want to have people come to it so that they can come into the Gathering Hub" (2026-11-21). Today 6 chapters are free to read and 1 is in patron early access.
 
-Membership is optional and runs through Patreon, in tiers. The site's gate page names the top tier, **The Mountain**: "Both tellings of The Path — and the deepest reveals of the codex." A 7-day reading trial is built but not offered today. I do not list prices here.
+Membership is optional and runs through Patreon, in tiers. The site's gate page names the top tier, **The Mountain**: "Both tellings of The Path — and the deepest reveals of the codex." A 7-day reading trial is built into the site; I have not re-checked whether its button is shown today. I do not list prices here.
 
 ## The Lane: merch
 
@@ -119,11 +119,11 @@ The shop is written in the world's voice: 15 products in 5 stalls (Weaver's, Pot
 
 ## The campaign engine: posting without losing control
 
-A separate service drafts posts into an approval queue, up to one per enabled platform a day (Instagram and Facebook on Tuesdays and Thursdays by default). Nothing posts until the engine is armed. The daily Bluesky post can go out on its own only when three switches are all on (the engine is armed, Bluesky autopost is enabled, and a live connector exists), and a canon check reads it first; by its own design that check fails open, so with no AI key it passes the post through. An optional gallery drip can also post to Facebook and Bluesky on its own under the same kind of switches (it ships switched off), and a campaign runs on schedule only after it is approved and armed. Everything else is review-first.
+A separate service drafts posts into an approval queue, up to one per enabled platform a day (Instagram and Facebook on Tuesdays and Thursdays by default). Nothing posts on its own until the engine is armed. A person can still press "Publish now" on a reviewed draft or a queued campaign step: that click is the approval, so it does not wait for the arm switch, and the app's password gate protects it in production. The daily Bluesky post can go out on its own only when three switches are all on (the engine is armed, Bluesky autopost is enabled, and a live connector exists), and a canon check reads it first; by its own design that check fails open, so with no AI key it passes the post through. An optional gallery drip can also post to Facebook and Bluesky on its own under the same kind of switches (it ships switched off), and a campaign runs on schedule only after it is approved and armed. Everything else is review-first.
 
 - **Merch sync:** pages through Fourthwall's product list with a 50-page ceiling against runaway paging, then drafts posts for the products.
 - **Ads:** every Meta campaign, ad set and ad is created **paused**. Only the armed scheduler path can switch them on, and the account spending cap is written and read back first. A rehearsal mode builds the real objects and leaves them paused.
-- 13 connector files for social platforms, a newsletter, Patreon and video. 103 tests across merch, ads and connectors, all passing. 282 commits.
+- Connectors for 10 platforms (social networks, a newsletter and Patreon), all behind one shared interface, plus a video helper that most of them use. 101 tests declared across merch, ads and connectors (counted in the source on 2026-11-23, not re-run). 329 commits on its default branch.
 
 ## Where the safety lives in the code
 
@@ -210,19 +210,19 @@ Chunks are content-hashed, so unchanged text reuses its embedding. The index is 
 | The Path | 254 GDScript files, 39,385 lines, 38 scenes, 396 commits |
 | Combat renderer | 130 files, 38 commits; 161 Node tests passing |
 | Game release gate | 31 files, 44 commits; 24 tests passing |
-| Living Codex site | 114 commits; about 6,900 lines of site code |
+| Living Codex site | 114 commits; about 6,600 lines of site code (6,775 with the privacy and data-deletion pages) |
 | Member portal | 102 commits |
 | Gate tests (in the main repository) | 3 tier-gating tests for the portal's lore gate and 5 beta-window tests for the game gate and site, all passing |
 | Lore index pipeline | 4 scripts, 564 lines |
 | Database schema | 6 forum tables plus 1 more, all with row-level security |
-| Campaign engine (separate private repository) | 282 commits; 103 tests passing |
+| Campaign engine (separate private repository) | 329 commits on its default branch, 341 across all branches; 101 tests declared in merch, ads and connectors |
 | Public content | 6 films, 325 gallery entries, 6 free chapters and 1 in early access, 15 products on the site, 21 on the store |
 
-Tests marked "passing" were run on 2026-11-21. The 103 Godot test files were counted, not run.
+Tests marked "passing" were run on 2026-11-21. The 103 Godot test files were counted, not run; the campaign engine's test figure is a count of declared tests, made on 2026-11-23.
 
 ## Limits
 
-- **The Gathering is down for visitors today.** It is built and was live; its backend needs restoring before I call it live again.
+- **The Gathering did not load for visitors on 2026-11-21.** It is built and was live; I will not call it live again until a check shows it loading.
 - **No free way into the game right now.** The public beta ended on 2026-10-16. I have not shown gameplay from the live member build; the game images above are development captures.
 - **The redaction guarantee covers text only.** I do not claim it for images.
 - **The game gate covers the game host's routes.** I do not claim more than that, and it fails open if its secret is missing.

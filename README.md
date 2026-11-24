@@ -30,7 +30,7 @@ My four-book series shares its name with the north star; it is the project on th
 
 - **Live:** [threemountaintops.world](https://threemountaintops.world) (site, codex, films, gallery, the Lane shop) and [the Fourthwall store](https://three-mountaintops-shop.fourthwall.com) it links to for checkout.
 - **Member-gated:** [path.threemountaintops.world](https://path.threemountaintops.world), the game (top Patreon tier; the free public beta ended 2026-10-16).
-- **Honest status:** the Gathering forum is built but did not load for visitors on 2026-11-21, because its database backend was unreachable.
+- **Honest status:** the Gathering forum is built, but in a live check on 2026-11-21 it did not load for visitors, because the page could not reach its database backend. I have not re-checked it since.
 
 **[Read the case study](work/three-mountaintops-world.md)**.
 
@@ -42,7 +42,7 @@ My four-book series shares its name with the north star; it is the project on th
 >
 > *Spoken, 2026-11-21.*
 
-The tools around my streams and classes, all running on my own machine: **Live Presenter** (Markdown decks with private notes and a clean audience window; my class tool since 2026-11-02), **Stream Hub** (starts and stops my streams and recording through OBS, with stream keys encrypted), and a **clip pipeline** that turns a long stream into short vertical clips, proven on one 98-minute stream. Nothing is uploaded unless the exact approved clip still matches its hash. **[Read the case study](work/streams-and-shorts.md)**.
+The tools around my streams and classes, all running on my own machine: **Live Presenter** (Markdown decks with private notes and a clean audience window; chosen on 2026-11-02 as the tool for my public AI classes, the first of which is on 2026-12-13), **Stream Hub** (starts and stops my streams and recording through OBS, with stream keys encrypted), and a **clip pipeline** that turns a long stream into short vertical clips, so far run once, on one 98-minute stream. Nothing is uploaded unless the exact approved clip still matches its hash. **[Read the case study](work/streams-and-shorts.md)**.
 
 ## Michael: my personal system
 
@@ -50,7 +50,7 @@ The tools around my streams and classes, all running on my own machine: **Live P
 >
 > *Spoken, 2026-11-21.*
 
-Michael is the first half of the lead sentence: the personal system unique to me. One installable web app holds a meditation app, a dream journal, a morning companion, goals and reminders, and a RAG over my own entries, all on one timeline. My data lives in my browser, every API route needs a signed session, and the AI Guide fails closed. In daily use; 866 of 866 tests passed on 2026-11-21. The page covers machinery only, never what I write in it. **[Read the case study](work/michael.md)**, and see [Kingdom Within](work/kingdom-within.md) for the research-and-teaching tools beside it.
+Michael is the first half of the lead sentence: the personal system unique to me. One installable web app holds a meditation app, a dream journal, a morning companion, goals and reminders, and a RAG over my own entries, all on one timeline. My data lives in my browser, every API route except the unlock step needs a signed session, and the AI Guide fails closed. In daily use; 866 of 866 tests passed on 2026-11-21. The page covers machinery only, never what I write in it. **[Read the case study](work/michael.md)**, and see [Kingdom Within](work/kingdom-within.md) for the research-and-teaching tools beside it.
 
 ## Cosmic Blueprint: the seed
 
@@ -70,7 +70,7 @@ This repository is written for anyone who wants to know what I can build, techni
 
 ## Start here
 
-- **Hiring for AI systems work?** [The Understudy](work/understudy.md) (an agent that earns each permission on a checked record), [engineering stories](work/engineering-stories.md) (what broke, what I measured, what I changed), and the public code in [knowledge-library](https://github.com/sorry2befrank/knowledge-library) (1,805 tests in CI).
+- **Hiring for AI systems work?** [The Understudy](work/understudy.md) (an agent that must earn each permission on a checked record), [engineering stories](work/engineering-stories.md) (what broke, what I measured, what I changed), and the public code in [knowledge-library](https://github.com/sorry2befrank/knowledge-library) (1,805 tests in CI).
 - **Running a business?** [Client work](work/client-work.md), and [work with me](https://understudy.consulting/work-with-me.html) for builds and AI training.
 - **Curious about the idea?** [The North Star](work/north-star.md), then [fly through Voyage](https://voyage.understudy.consulting).
 - **Want to see a whole product I built and run?** [Three Mountaintops World](work/three-mountaintops-world.md), live at [threemountaintops.world](https://threemountaintops.world).
@@ -80,10 +80,10 @@ This repository is written for anyone who wants to know what I can build, techni
 
 | | |
 |---|---|
-| **206** things built, one line each, in **[the catalog](work/catalog.md)** | roughly **1 million** lines of code (about 780k source, 295k tests) |
+| **205** things built, one line each, in **[the catalog](work/catalog.md)** | roughly **1 million** lines of code (about 780k source, 295k tests) |
 | **5,100+** commits in all, **4,300+** since 2026-07-04 | the great majority written by AI agents that I direct and check; see [the method](work/build-method.md) |
-| **2,045** automated tests in the control system, run in full every night | the record shows 58 green, 15 red and 26 timeouts, and I publish it |
-| **56** components, **8** layers, **11** governed workflows in one live system map | today, none is marked "verified" without a receipt |
+| **2,213** automated tests in the control system (2026-11-23), run in full every night | across 102 nightly runs the record shows 59 green, 16 red and 27 timeouts, and I publish it |
+| **56** components, **8** layers, **11** governed workflows in one live system map | today, none is marked "verified" without a record that proves it |
 
 Full table, with how every figure was measured: **[by the numbers](work/by-the-numbers.md)**.
 
@@ -98,21 +98,21 @@ Full table, with how every figure was measured: **[by the numbers](work/by-the-n
 | **[Kingdom Within](work/kingdom-within.md)** | The tools behind a research-and-teaching project: checked study notes, a read-only snapshot for Michael, and clips that publish only when the exact approved file still matches. |
 | **[Streams and shorts](work/streams-and-shorts.md)** | Live Presenter, Stream Hub and a clip pipeline that turns a long stream into short vertical clips behind a hash-sealed approval gate. |
 | **[Everything I have built](work/catalog.md)** | The catalog: 205 things, one line each, with an honest status, plus 22 plans. |
-| **[The Orrery](work/orrery.md)** | A control room for a one-person AI operation: it maps every workflow, shows where each one is broken, does bounded work overnight, and refuses to say "working" without a receipt. |
-| **[The Understudy](work/understudy.md)** | An AI agent that starts read-only and must earn every permission on a record checked by someone else. 208 reports, 150 adjudications, 0 confirmed-false, and a ladder it cannot skip. |
-| **[Agent runtime](work/agent-runtime.md)** | Many agents for many customers, with no cross-customer reads, one metered model client and no path to production without a human. Safety rules are tests that are shown to fail. |
+| **[The Orrery](work/orrery.md)** | A control room for a one-person AI operation: it maps every workflow, shows where each one is broken, does bounded work overnight, and refuses to say "working" without a record that proves it. |
+| **[The Understudy](work/understudy.md)** | An AI agent that starts read-only and must earn every permission on a record checked by someone else (one rung so far was granted by me instead, and is labelled that way). 210 reports, 150 adjudications, 0 confirmed-false, and a ladder it cannot skip. |
+| **[Agent runtime](work/agent-runtime.md)** | Many agents for many customers, with knowledge scoped to the shared commons or to one customer, one metered model client, and nothing its site editor or Forge makes reaching production without an explicit approval. Safety rules are tests that are shown to fail. |
 | **[Knowledge Library](work/knowledge-library.md)** | A search archive for AI assistants where nothing leaves the working set without a verified copy. Public, MIT licensed, 1,805 tests in CI. |
-| **[Voyage](work/voyage.md)** | A connected AI system you can fly through, live on the web, with a public site that provably contains none of the private system. Plus a VR edition. |
+| **[Voyage](work/voyage.md)** | A connected AI system you can fly through, live on the web, with a public site that is checked to contain none of the private system. Plus a VR edition. |
 | **[Production studio](work/production-studio.md)** | Story in, consistent finished media out: multi-model routing with visible cost, an identity lock for characters, and a safe bulk publish gate. |
 | **[Authors Codex](work/authors-codex.md)** | A private workspace for novelists with authors isolated by the database schema itself: 21 tables, all with row-level security. |
-| **[Client work](work/client-work.md)** | Rescuing a live client app by fixing the data-state cause, and building an astrology product checked against NASA reference data. |
-| **[Smaller tools](work/tools.md)** | An offline business-audit app (public), a read-only notes server for AI apps, and rules for using a small judgment model. |
+| **[Client work](work/client-work.md)** | Rescuing a live client app by fixing the data-state cause, building an astrology product checked against NASA reference data, and six more client builds: a booking and client-care platform, a bulk video upload, a nonprofit site its founder edits herself, a barbershop booking site, a musician's console and audit documents. |
+| **[Smaller tools](work/tools.md)** | An offline business-audit app (public), a read-only notes server for AI apps, rules for using a small judgment model, a health auditor that cannot change what it watches, a phone-view preview tool, and a launcher that hides background-job windows without hiding failures. |
 | **[The build method](work/build-method.md)** | The two-model build loop, independent verification, and the rules I wrote after things went wrong. |
-| **[Engineering stories](work/engineering-stories.md)** | Fourteen times something broke, what I measured, and what I changed. |
+| **[Engineering stories](work/engineering-stories.md)** | Fifteen times something broke, what I measured, and what I changed. |
 
 ## The five habits behind all of it
 
-1. **"Unknown" is the default.** A step is verified only when a receipt says so.
+1. **"Unknown" is the default.** A step is verified only when a record proves it happened.
 2. **The builder never grades its own work.** A second agent, or a deterministic check, decides.
 3. **Safety rules are tests.** If the rule can be broken without a red build, it is not a rule.
 4. **Make mistakes reversible; keep the irreversible shut.** Writes are revert-protected; deploys are never automatic.
@@ -126,7 +126,7 @@ Full table, with how every figure was measured: **[by the numbers](work/by-the-n
 
 ## What is not here
 
-The private systems have no public source, so this is written, not code, apart from the two public repositories linked above ([knowledge-library](https://github.com/sorry2befrank/knowledge-library) and [understudy-audit](https://github.com/sorry2befrank/understudy-audit)). Client and customer names, revenue and private writing are deliberately left out. Every figure was recomputed from the real systems on 2026-11-20 or 2026-11-21; figures I could not verify are marked, not quoted.
+The private systems have no public source, so this is written, not code, apart from the two public repositories linked above ([knowledge-library](https://github.com/sorry2befrank/knowledge-library) and [understudy-audit](https://github.com/sorry2befrank/understudy-audit)). Client and customer names, revenue and private writing are deliberately left out. Every figure was recomputed from the real systems between 2026-11-20 and 2026-11-23; figures I could not verify are marked, not quoted.
 
 ## Contact
 

@@ -2,7 +2,7 @@
 
 *Case study, Definition mountain. Source is private. Michael is a single-user instrument with no published address. Figures measured 2026-11-21. This page covers the machinery only: what each part does, how it is built and how my data is protected. Nothing here shows what I write in it.*
 
-**Status, 2026-11-21:** in daily use. Deployed privately on Vercel behind a session gate: its pages answer, and its API routes refuse anyone without a signed session. The full test suite (866 of 866) and the astronomy-engine audit both passed on 2026-11-21. Last code commit 2026-10-28.
+**Status, 2026-11-21:** in daily use. Deployed privately on Vercel behind a session gate: its pages answer, and its API routes, apart from the unlock step itself, refuse anyone without a signed session. The full test suite (866 of 866) and the astronomy-engine audit both passed on 2026-11-21. Last code commit 2026-10-28.
 
 > It is my personal journal tracker that is personalized specifically to what I think is important and helps me track my goals and helps me achieve them, or helps me be able to have a reminder of what my tasks are. It's something that keeps me on par, and then there's a lot of different apps that have gotten integrated inside of it.
 >
@@ -20,7 +20,7 @@ Michael is one installable web app (a PWA). It pulled about a dozen of my earlie
 
 The centre is **Today**. A deterministic engine works out the day, and an AI Guide writes a short reading for it, aligned to my own goals and cited to a wisdom library. Around that sit the morning check-in, a Guide I can talk with, a memory that can find what I said before, goals with a weekly review, a morning brief with tasks, reminders, a breathwork app, a dream journal and the other apps.
 
-My data lives on my own device, in the browser. The server is a thin set of signed, safety-screened API routes and keeps no user database.
+My data lives on my own device, in the browser. The server is a thin set of API routes behind a signed session, with a safety screen on every route that sends my reflective writing to a model. It keeps no user database.
 
 ## How it fits together
 
@@ -68,7 +68,7 @@ Every app then shares the same services: the session gate, the monthly AI budget
 | **Goals, weekly review, brief and reminders** | Goals, a weekly mirror, an agenda and work streams, and reminders | localStorage, IndexedDB, a service worker | **Built**, in daily use |
 | **Breathe** (meditation) | Guided breathwork sessions, logged to the timeline | A client state machine; practices defined as data | **Built**, in daily use |
 | **Dream journal** | Captures dreams, extracts symbols, interprets with cited passages, tracks motifs | Claude Haiku for extraction, Claude Sonnet for interpretation, a local ephemeris | **Built**, in daily use |
-| **Interfaith Library link** | A cited corpus of 1,820 passages and a 43,722-verse semantic index | A build script, an int8 vector index | **Built** |
+| **Interfaith Library link** | A cited corpus of 1,820 passages and a 43,722-verse semantic index | A corpus script, an int8 vector index | **Built** |
 | **Other integrated apps** | Chart suite, place map, timing, food and movement log, rest module, 3D sanctuary and more | Same stack | **Built** |
 | **Multi-user back end** | Shared storage for more than one person | Supabase, 5 SQL migrations with own-rows policies | **Scaffolded, not in use** |
 
@@ -76,9 +76,9 @@ Every app then shares the same services: the session gate, the monthly AI budget
 
 A deterministic engine computes the day: the moon phase, the planetary hours, the day's numerology, a score tier and the day's wisdom passage. The astronomy engine is audited against the Swiss Ephemeris (see "How it is checked" below).
 
-A LangGraph agent then writes the reading. It runs Gather, Guide, Discern, and then either Deliver or one revision. In the Discern step a small, cheap model (Claude Haiku) acts as the critic. The agent works against my active goals and never invents a goal. The result is cached in the browser, so it costs one call to the large model per day.
+A LangGraph agent then writes the reading. It runs Gather, Guide, Discern, and then either Deliver or one revision. In the Guide step the large model (Claude Opus) drafts the reading. In the Discern step a code check first confirms that the goal the draft names is one of my real goals, and then a small, cheap model (Claude Haiku) acts as the critic. The agent works against my active goals and never invents a goal. The result is cached in the browser for the day, and it is composed again when I edit a goal or change the reading lens. Each reading costs one call to the large model, or two if the critic sends the draft back for its one revision. This is the only workflow in Michael that runs on LangGraph; 22 other API routes call Claude directly.
 
-**The agent fails closed.** `src/lib/agent/guide.ts`, lines 200 to 223. The revision limit is one (`MAX_REVISIONS = 1`). If the critic still flags the reading after that one revision, the agent ships nothing and the deterministic formula renders instead. The boundary lives in the code, not only in the prompt, and the one-revision limit is also a hard cost ceiling.
+**The agent fails closed.** `src/lib/agent/guide.ts`, lines 200 to 223. The revision limit is one (`MAX_REVISIONS = 1`). If the critic still flags the reading after that one revision, the agent ships nothing and the deterministic formula renders instead. The boundary lives in the code, not only in the prompt, and the one-revision limit also caps each reading at two drafts and two reviews. Those are model calls: if a request fails in transit, the SDK's automatic retries can add network attempts on top.
 
 ```ts
 /** Deliver — finalize. FAIL CLOSED: if the revision ran out and the critic
@@ -157,7 +157,7 @@ This is the RAG I mentioned above. It has three layers.
 2. **Ask your own history.** The browser finds the 10 closest entries and sends only those, each capped at 4,000 characters. The answer must come only from those entries, must cite every claim with its date and kind, and must treat the entries as data, never as instructions. The server never receives the full history.
 3. **Consent-gated records.** The Guide's own context, described above, limited to the 14 areas.
 
-Every free-text entry is screened before it is saved. The build checks the real embedding path against the shipped index on every push.
+Every free-text entry is screened before it is saved. On every push to main and every pull request, the advisory GitHub check runs the real embedding path on public sample text and requires it to match the shipped index (a cosine similarity of at least 0.99).
 
 ## Goals, the weekly review, tasks and reminders
 
@@ -199,13 +199,13 @@ By name, as they appear in the app:
 
 ## The Interfaith Library
 
-*Live and public: [interfaith-library.vercel.app](https://interfaith-library.vercel.app/). Source is private. The live site serves 117 entries; a branch with 124 entries and 4 more maps is built and not yet deployed. Michael's copy was built from the 124-entry version.*
+*Live and public: [interfaith-library.vercel.app](https://interfaith-library.vercel.app/). Source is private. The main branch, which the public site deploys from, has 117 entries and 33 maps. A working branch with 124 entries and 37 maps was pushed on 2026-11-20, and my inventory records that the push produced a preview build; it is not merged into main yet. Michael's copy was built from the 124-entry version.*
 
-The library is its own app: a comparative-religion and symbol encyclopedia. Every entry is one of six types (concept, symbol, figure, practice, text, teaching), and all of them share one schema. An entry leads with what the traditions have in common, then gives a view for each of 10 traditions and 4 non-religious lenses, with sourced quotes. There are 124 entries on the working branch, 37 Interfaith Maps (one theme with each tradition's own name for it), 11 guided journeys with 72 steps, a D3 concept graph, side-by-side compare and fuzzy search. A visitor's saved entries and notes stay in their own browser. Its "Council Mode" AI answers sit behind a supporter unlock that the server checks before it spends any model tokens. Built with React 19, Vite 8, Zustand, Fuse.js and D3, on Vercel.
+The library is its own app: a comparative-religion and symbol encyclopedia. Every entry is one of six types (concept, symbol, figure, practice, text, teaching), and all of them share one schema. An entry leads with what the traditions have in common, then gives a view for each of 10 traditions, and an entry can add views through 4 non-religious lenses. The library's rule is that a quote stays blank, with a to-do note, until its wording and source are verified; on main, 121 quote fields are blank for that reason. The working branch has 124 entries and 37 Interfaith Maps (one theme with each tradition's own name for it); both branches have 11 guided journeys with 72 steps, a D3 concept graph, side-by-side compare and fuzzy search. A visitor's saved entries and notes are kept in their own browser, with no account, but the AI features send some of them out: with the visitor's opt-in, Council sends up to 8 saved or recent entry titles, and Your Practice sends the visitor's own entry notes and past-practice reflections, both through the server to Anthropic. Both AI features, the "Council Mode" answers and Your Practice, sit behind a supporter unlock that the server checks before it spends any model tokens. Built with React 19, Vite 8, Zustand, Fuse.js and D3, on Vercel.
 
 **How Michael uses it:**
 
-- **Corpus build.** A build script reads the library's entry files and **drops any quote whose wording is not verified**. It writes a committed corpus of 1,820 passages: 581 verbatim quotes and 1,239 attributed teachings. Michael never needs the library at runtime. Searching runs on the server, so the full array is never sent to the browser.
+- **Corpus build.** A separate script, run on its own and not as part of Michael's build, reads the library's entry files and **drops every quote with empty text**. It does not judge wording itself: it relies on the library's rule that a quote stays blank until its wording is verified. It writes a committed corpus of 1,820 passages: 581 verbatim quotes and 1,239 attributed teachings. Michael never needs the library at runtime. Searching runs on the server, so the full array is never sent to the browser.
 - **The verbatim-quote gate.** A quote and a teaching are separate kinds in the data, so a summary can never be shown as a quotation.
 - **Retrieval.** Passages are scored by overlap with the day's themes, practices and chart tags. Recently shown passages are penalised, and no tradition gets more than 2 passages, so none dominates.
 - **The semantic verse index.** 43,722 public-domain verses across several traditions' scriptures, embedded with the same MiniLM model (384 dimensions, int8, about 16.8 MB of vectors), searched in memory with no database. A query built from the day finds matches, and verbatim library quotes (never teachings) top up any tradition the index does not cover.
@@ -236,7 +236,7 @@ The library also feeds the dream journal's interpretations and the study surface
 
 ## Security and privacy
 
-- **One user, one signed cookie.** Every `/api/*` call passes a proxy that requires an HMAC-SHA-256 signed session cookie, with a 90-day maximum age and a constant-time compare. The cookie never contains the secret. On 2026-11-21 the production pages answered 200 and the API routes answered 401 without a session.
+- **One user, one signed cookie.** Every `/api/*` call except the unlock handshake passes a proxy that requires an HMAC-SHA-256 signed session cookie, with a 90-day maximum age and a constant-time compare. The cookie never contains the secret, and if the secret is missing in production the routes answer 503. On 2026-11-21 the production pages answered 200 and the API routes answered 401 without a session.
 - **Cross-site requests are refused.** A request that changes data and carries an explicitly cross-site origin is rejected before routing.
 - **A safety screen on reflective text.** Any app that reads reflective writing needs one. Every route that sends such text to a model screens it first: a deterministic check, then one Claude Haiku screen with one repair, inside a 90-second deadline. It fails closed: any error or unreadable result counts as a positive, and the interpretation is replaced with human support resources. Only the source and the time are logged, never the text.
 - **A monthly AI budget pause.** A ledger tracks AI use by route, model and month. Near the monthly ceiling the app switches to an economy mode, and at the ceiling it pauses AI features. A budget pause never switches off the safety screen.
@@ -249,8 +249,8 @@ The library also feeds the dream journal's interpretations and the study surface
 ## How it is checked
 
 - **The engine audit.** 8 gates check the astronomy engine against the Swiss Ephemeris: reference integrity, longitudes across epochs, ascendant and midheaven across latitudes, whole-sign houses, aspect math, wall time to universal time (DST included), 204 lunar-phase instants, and exact transit dates. Each gate is then re-run against a deliberately broken engine and must fail; if it does not, it is reported as blind and the run fails. A separate mutation test breaks the real source and requires the audit to notice. On 2026-11-21: 8 of 8 gates passed, and 8 of 8 were proven sensitive.
-- **The deploy gate.** The build script runs a dependency security audit, the type-check and engine audit, and the Guide, privacy and session tests before the app is built.
-- **Tests.** 105 test files. The deterministic suite ran 866 tests on 2026-11-21, all passing, in about 198 seconds, with no calls to a model provider.
+- **The deploy gate.** The build script runs a dependency security audit, the type-check and engine audit, and the full test suite before the app is built, and Vercel's build command is pinned to that script.
+- **Tests.** 105 test files. The deterministic suite ran 866 tests on 2026-11-21, all passing, in about three minutes, with no calls to a model provider.
 
 ## By the numbers
 
@@ -258,26 +258,26 @@ The library also feeds the dream journal's interpretations and the study surface
 |---|---|
 | Commits | 154, from 2026-07-04 (an import snapshot) to 2026-10-28 |
 | Size | 43 pages, 35 API routes, 87 React components, 47 library modules |
-| Code | About 45,400 hand-written TypeScript lines in 386 files, plus a 48,823-line generated wisdom corpus |
+| Code | About 45,400 TypeScript lines in 386 files, written mostly by AI coding agents (Claude Code and Codex) under my direction, plus a 48,823-line generated wisdom corpus |
 | Tests | 105 test files; 866 of 866 passing (run 2026-11-21) |
 | Engine audit | 8 of 8 gates passing, 8 of 8 proven sensitive (run 2026-11-21) |
 | Guide | 14 consent areas; 9 review categories; at most 1 revision |
 | Wisdom corpus | 1,820 passages: 581 verbatim quotes, 1,239 attributed teachings |
 | Verse index | 43,722 verses, 384-dimension vectors, int8 |
-| Interfaith Library | 124 entries, 10 traditions, 4 lenses, 37 maps, 11 journeys (117 entries and 33 maps live) |
+| Interfaith Library | 124 entries and 37 maps on the working branch (117 and 33 on main, which the public site deploys from); 10 traditions, 4 lenses, 11 journeys |
 | Multi-user back end | 5 SQL migrations, scaffolded and not in use |
 
 ## Limits
 
 - **No screenshots of Michael's screens.** Michael has no demo mode, and its data lives in my browser, so any capture of the running app would show my own entries.
 - **"Daily use" is my own account**, not a measured number.
-- **The AI features do send text out.** The text I select goes to Anthropic, and voice goes to OpenAI. Embeddings run in Michael's own server function: on my machine when run locally, and in my own Vercel function in production. A code comment says text "never leaves the machine"; that is literally true only for the local run.
+- **The AI features do send text out.** The text I select goes to Anthropic. My voice recordings, and the morning reading's text when I ask to hear it, go to OpenAI. Embeddings run in Michael's own server function: on my machine when run locally, and in my own Vercel function in production. A code comment says text "never leaves the machine"; that is literally true only for the local run.
 - **Backups are manual.** The vault exports when I ask it to.
 - **Background reminders depend on the browser.** iPhone has no background path, so the check on opening the app covers it. I have not verified that the background path fires on my phone.
 - **The GitHub check workflow is advisory**, not a merge gate. The deploy build itself still runs the audits and tests before it builds.
-- **The paid evaluation was not run for this page.** The 866 tests are the deterministic suite; the evaluation that calls the models costs money and was skipped.
+- **The paid evaluation was not run for this page.** The 866 tests are the deterministic suite; the evaluation that calls the models costs money and was skipped. On the record, both of its 2 cases passed on the 2026-10-12 and 2026-10-13 releases, and at one commit in October the first case's check that a composed reading came back failed 1 of 2 runs; the cause was not found. A single green run of a real-model evaluation is weak evidence.
 - **The commit history starts late.** The first commit is an import snapshot; earlier history predates it. Line counts are raw and include comments and blank lines.
-- **The library's newest work is not live yet.** The public site shows 117 entries and 33 maps; Michael already uses all 124 entries.
+- **The library's newest work is not on main yet.** Main, which the public site deploys from, has 117 entries and 33 maps; Michael already uses all 124 entries. I did not re-count the live site for this page.
 
 ## Related
 
@@ -287,6 +287,6 @@ Michael is the codebase of the Definition mountain in my [North Star](north-star
 >
 > *Spoken, 2026-11-21.*
 
-Cosmic Blueprint is live at [cosmic-blueprint.org](https://www.cosmic-blueprint.org) and has [its own page](cosmic-blueprint.md). Its reflective Guide uses the same Gather, Guide, Discern, Deliver design, ported from Michael, with a critic step and a written fallback. The two share design, not code or data: no data passes between them.
+Cosmic Blueprint is live at [cosmic-blueprint.org](https://www.cosmic-blueprint.org) and has [its own page](cosmic-blueprint.md). Its older one-shot reflective Guide was built on the same Gather, Guide, Discern, Deliver design, ported from Michael, with a critic step and a written fallback. That route is switched off while Cosmic Blueprint's navigation feature is on, as it is in production, and members talk to its newer Guide conversation instead. The two share design, not code or data: no data passes between them.
 
 [The North Star](north-star.md) · [Cosmic Blueprint](cosmic-blueprint.md) · [Kingdom Within](kingdom-within.md) · [Orrery](orrery.md) · [Voyage](voyage.md) · [Knowledge Library](knowledge-library.md) · [Build method](build-method.md)

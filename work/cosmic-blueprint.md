@@ -53,18 +53,18 @@ The page tells the visitor that only derived signs ever reach the Guide, never t
 | Part | What it does | Built with | Status, 2026-11-21 |
 |---|---|---|---|
 | **Seed and birth sky** | The first screen above: a seed, spark prompts, an age check, an optional birth sky | Static front end, no build step | **Live**, public |
-| **Chart generator** | Six tabs: Natal, Numerology, Vedic, Guidance, Daily, Transits. The natal chart is computed in the browser with a bundled ephemeris library and drawn as an SVG wheel. The Vedic layer applies its own date-accurate Lahiri ayanamsa and adds Vimshottari dasha and the Chinese zodiac. Pythagorean numerology, daily moon phase, transits and progressions | Browser JavaScript modules; the server checks the plan on every chart and AI call | **Live**, behind sign-in |
+| **Chart generator** | Six tabs: Natal, Numerology, Vedic, Guidance, Daily, Transits. The natal chart is computed in the browser with a bundled ephemeris library and drawn as an SVG wheel. The Vedic layer applies its own date-dependent Lahiri ayanamsa and adds Vimshottari dasha and the Chinese zodiac. Pythagorean numerology, daily moon phase, transits and progressions | Browser JavaScript modules; the server checks the plan on every AI call a tab makes | **Live**, behind sign-in |
 | **"Where Are You On The Mountain"** | 24 items scored into 5 stages and 3 mountains, saved per member with feedback for each stage | A pure scoring module plus two API routes | **Live**, behind sign-in |
 | **Terrain** | Maps chart factors onto the three mountains. The module's own line: "Your chart is not your destiny. It is your terrain." | A pure function that never throws | **Live**, behind sign-in |
-| **Navigation map** | A profile, a brief for each mountain with an archived version history, and small experiments. They are assembled into a "person context" the Guide may read, with consent | Behind a feature flag that is off unless set exactly | **Live.** The flag is on in production: its routes answer 401 to a signed-out request instead of the flag-off 404 |
-| **AI Guide with memory** | A short taste for guests. For members: one lasting conversation, with history, chart context, mountain grounding, goals and checkpoints saved on the server. Members can list, add, edit and delete the memory items the Guide keeps. A separate one-shot reflective Guide uses a critic model and falls back to authored text | The Anthropic Messages API, called from the server only: Claude Haiku for chat, journal and goals; Claude Sonnet for the reflective Guide, with a Haiku critic | **Live.** Its routes answer 401 without a session |
+| **Navigation map** | A profile, a brief for each mountain with an archived version history, and small experiments. They are assembled into a "person context" the Guide may read, with consent | Behind a feature flag that is off by default; only 1, true, yes or on (in any letter case) turn it on | **Live.** The flag is on in production: its routes answer 401 to a signed-out request instead of the flag-off 404 |
+| **AI Guide with memory** | A short taste for guests. For members: one lasting conversation, with history, chart context, mountain grounding, goals and checkpoints saved on the server. Members can list, add, edit and delete the memory items the Guide keeps. An older one-shot reflective Guide (a critic model checks each draft, with authored text as the fallback) is still in the code, but it is switched off (410) whenever the navigation flag is on, as it is in production | The Anthropic Messages API, called from the server only: Claude Haiku 4.5 for chat, journal and goals. The older reflective Guide defaults to Claude Sonnet with a Haiku critic | **Live.** The member routes answer 401 without a session |
 | **Goals, journal, practices, progress** | Goals with an AI-suggested method, journal entries with an AI reflection, practice tracking with daily check-offs, progress check-ins with a rating and a reflection. Free members keep goals and practices without AI | API routes per feature, Supabase Postgres | **Live**, behind sign-in (the journal route answers 401 without a session) |
 | **Plans and payments** | Three plans: free (the calculator math and the assessment, no AI), a one-time "Snapshot", and a subscription that unlocks the AI features. Payment is Stripe Checkout, a customer portal and a signature-verified webhook. The one-time purchase and the subscription are tracked separately, so cancelling one never removes the other | Stripe | **Built.** I made no purchase to test it |
-| **Cost breaker and rate limits** | Before any AI provider call, the database does one atomic check-and-charge against global, per-member and guest daily budgets. A failed charge always denies the call. Per-member rate limits use a sliding window | Postgres functions; Upstash Redis | **Live** |
+| **Cost breaker and rate limits** | Before any AI provider call, the database does one atomic check-and-charge against global, per-member and guest daily budgets. A failed charge always denies the call. Per-member rate limits use a sliding window (200 calls an hour). The rate limiter fails open: if Upstash is not set up or errors, the call goes on, and admin accounts skip it, so the database charge is the check that always holds | Postgres functions; Upstash Redis | **Live** |
 | **Birthplace lookup** | A proxy to OpenStreetMap's Nominatim with a one-request-per-second lease shared across server instances, and a cache keyed by a one-way hash of the city | One API route | **Live** |
-| **Account deletion** | Removes billing state first, then the member's rows, then the sign-in account last, so a failure never leaves an account that can still sign in | One API route | **Built** |
+| **Account deletion** | Removes billing state first, then the member's rows, then the sign-in account last. If a row delete throws, the route stops with the sign-in account still in place, so the member can try again. Five tables are deleted by name; the rest rely on the database's cascade when the sign-in account is removed. The row step catches thrown errors but does not check errors the database client returns | One API route | **Built** |
 | **Begin My Day** | A private morning ritual: one morning log, one message from an in-app companion persona named "Michael", one suggested practice. A lease and compare-and-swap rule stop a request from running twice | API route and front-end module | **Built and staged; not live.** It sits on a branch 3 commits ahead of main; production returns 404 for its route and script |
-| **Front-end repository** | Holds exactly the files a browser receives, so the site can be previewed and edited without the backend. A sync script copies the app's public folder into it and never commits or pushes | A separate private repository | 2 commits, 81 files, last commit 2026-09-09 |
+| **Front-end repository** | Mirrors the files a browser receives, so the site can be previewed and edited without the backend. A sync script copies the app's public folder into it and never commits or pushes | A separate private repository | Main branch: 2 commits, 81 files, last commit 2026-09-09. A second branch brings it to 12 commits, the latest on 2026-09-15 |
 
 ## How it fits together
 
@@ -90,18 +90,18 @@ The page tells the visitor that only derived signs ever reach the Guide, never t
 
 The two share ideas and one design, not code. Cosmic Blueprint does not connect to Michael or read any of Michael's data.
 
-- **Michael to Cosmic Blueprint: the Guide design.** Michael's Guide works in four steps: gather, guide, discern (a critic checks the draft), deliver. The header of Cosmic Blueprint's `api/guide.js` says its Guide "ported *mechanism*" from Michael's Guide, rewired to this app's sign-in and plans. It also fails closed the same way: on a flag from the critic, a model error or a missing key, it returns the authored reflection instead.
-- **The same stance.** Michael's design rule is "a mirror, not an oracle": it reflects and never gives verdicts, and what the person logs outranks any computed reading. Cosmic Blueprint's Guide carries the same rule: "A mirror, not an oracle — reflection and questions only, never prediction, fortune-telling, or a verdict about the person." The public page says it too: "Your own experience always comes first."
+- **Michael to Cosmic Blueprint: the Guide design.** Michael's Guide works in four steps: gather, guide, discern (a critic checks the draft), deliver. The header of Cosmic Blueprint's `api/guide.js` says its Guide "ported *mechanism*" from Michael's Guide, rewired to this app's sign-in and plans. It also fails closed the same way: on a flag from the critic, a model error or a missing key, it returns the authored reflection instead. That route is now the older Guide: it is switched off (410) while the navigation flag is on, as it is in production, and members talk to the one lasting conversation instead.
+- **The same stance.** Michael's design rule is "a mirror, not an oracle": it reflects and never gives verdicts, and what the person logs outranks any computed reading. Cosmic Blueprint's live Guide carries the same rule: "A mirror, not an oracle — reflection, grounded suggestions, and questions; never prediction, fortune-telling, or a verdict about the person." The public page says it too: "Your own experience always comes first."
 - **Cosmic Blueprint to Michael: a clean-room rebuild.** Michael has its own Blueprint section (12 route files: chart, numerology, Vedic, transits, compatibility and more). Its layout file calls it "the native replacement for Cosmic Blueprint (clean-room)". It runs its own Swiss Ephemeris engine rather than Cosmic Blueprint's library. A few of its AI prompts were folded in from Cosmic Blueprint, and one of its modules states "no Cosmic Blueprint code".
 - **A room for it.** Michael's 3D Sanctum has a Cosmic Blueprint desk, next to the Interfaith Library.
 - **"Michael" inside Cosmic Blueprint is only a name.** The staged Begin My Day ritual speaks as a companion called Michael. Its code is explicit: "There is deliberately no local journal store or connection to a Michael account."
-- **The mountains.** The three-mountain assessment and map share the mountain image of my book series, [The Three Mountaintops](three-mountaintops-world.md). The Guide is kept out of the book's voice on purpose: its header says "NO book \"world-voice\"".
+- **The mountains.** The three-mountain assessment and map share the mountain image of my book series, [The Three Mountaintops](three-mountaintops-world.md). The older reflective Guide was kept out of the book's voice on purpose: its header says "NO book \"world-voice\"".
 
 ## Where the safety lives in the code
 
 Three excerpts, verbatim.
 
-**1. Plans gate the tabs, on the server.** `api/_lib/entitlement.js`, lines 26 to 31. The browser cannot unlock a tab; the server reads the member's plan on every chart and AI call. A separate chat allowlist means a client cannot pick the model, the system prompt or the tools.
+**1. Plans gate the tabs, on the server.** `api/_lib/entitlement.js`, lines 26 to 31. The server reads the member's plan and tells the browser which tabs to show, and every AI call behind a tab is checked against the plan on the server, so editing the page cannot unlock the AI. A separate chat allowlist means a client cannot pick the model, the system prompt or the tools.
 
 ```js
 export const PLAN_TABS = {
@@ -144,21 +144,23 @@ export const PLAN_TABS = {
 | API | 24 endpoints, plus 13 shared server libraries; 6,511 lines of server code |
 | Database | 10 SQL files: the schema plus 9 numbered migrations (v2 to v6, v9 to v12); 20 tables; 46 row-level-security policies in the schema |
 | Front end | 21 JavaScript modules; `index.html` 3,624 lines, `mountain-app.js` 5,668 lines, `theme.css` 3,230 lines |
-| Tests | 46 test files with 339 test cases, 7,214 lines. The deploy's build command runs the full suite, so a failing test stops a deploy |
+| Tests | 46 test files with 339 test cases, 7,214 lines. On main, the rule was to run the full suite before each command-line deploy (`node --test && vercel deploy --prod`), and on 2026-08-30 a failing test stopped a production ship that way. The staged Begin My Day branch makes the suite the deploy's build command, so there a failing test stops the deploy itself |
 | Assessment | 24 items, 5 stages, 3 mountains |
 | Chart generator | 6 tabs on the live site |
-| Front-end repository | 2 commits, 81 files, last commit 2026-09-09 |
-| Live check | Four core files on the live site match main byte for byte (normalised SHA-1) |
+| Front-end repository | Main branch: 2 commits, 81 files, last commit 2026-09-09; 12 commits across both branches, the latest on 2026-09-15 |
+| Live check | On 2026-11-21, four core files fetched from the live site matched main by SHA-1 after normalisation. The 2026-10-23 release record also says the public domain stayed on the earlier deployment, whose index page, mountain-app module and sign-in module matched main after newline normalisation |
 
 The figures above are for main, the branch the live site serves. The staged Begin My Day branch adds 1 endpoint, 1 server library, 2 front-end modules and 4 test files with 38 more test cases (377 in all).
 
-The test cases were counted, not run, for this page. The last recorded run, on 2026-10-23, was on the staged Begin My Day branch and passed all 377.
+The test cases were counted, not run, for this page. The last recorded run on main, at the 2026-09-09 ship, passed all 339. The last recorded run of all, on 2026-10-23, was on the staged Begin My Day branch and passed all 377.
 
 ## Limits
 
 - **I did not sign in for this page.** The chart tabs, the map, the Guide and the journal were checked in code and by their live routes (401 without a session), not by using them. The screenshots show only the public first screens.
-- **Payments were not tested with a purchase.** The Stripe code is complete; I make no claim about live transactions.
-- **Begin My Day is built and staged, not live.** Production returns 404 for it.
+- **Payments were not tested with a purchase.** The Stripe code is complete; I make no claim about live transactions. The webhook keeps no event ids and does not check their order, so a late, older event could overwrite newer plan state.
+- **Begin My Day is built and staged, not live.** Production returns 404 for it. Its release record says a real signed-in model reply had not yet been checked.
+- **Many UI tests read source text.** They match patterns in `mountain-app.js` and `theme.css` instead of driving a browser. There is no CI; deploys are pushed from the command line.
+- **Two chart shortcuts.** The Lahiri ayanamsa is a linear approximation (the J2000 value plus a constant rate), and the Chinese zodiac ignores the lunar new year date.
 - **The repository SQL is not the whole database.** Four tables the API uses (journal entries, goals, progress check-ins and practice completions) are not created by any SQL file in the repository, and migrations v7 and v8 are not in it.
 - **The tests were not rerun** for this page; the count comes from the test files.
 - **Quiet since 2026-10-23.** The site is live and unchanged since the main branch of 2026-09-09.

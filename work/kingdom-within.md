@@ -26,8 +26,8 @@ The recordings show real people, so they stay private. Nothing goes public witho
 | **Recording library** | One folder per talk, described by a `talk.json` the Studio reads | A folder convention and a JSON record | **Running.** 4 recordings catalogued, 2 fully processed |
 | **Clip and transcript tools** | Long recording in; careful transcript, captions, chapters and vertical clips out | Python 3, Node, ffmpeg | **Built and used** |
 | **Live & Clips studio** | The local hub where clips are reviewed, approved and published. Kingdom Within is one project inside it | `node:http` with no npm dependencies, a plain JS front end, a PowerShell launcher | **Running** on 127.0.0.1 |
-| **YouTube publishing** | Uploads one approved clip at a time, as private, unlisted or public | YouTube Data API v3 (desktop OAuth, resumable upload), Windows DPAPI | **Built and connected** (2026-11-09). 5 clips from one talk are public, per the project's records |
-| **Stream Studio** | Topic folders and playlists for future streams, offline clip ideas, and an automatic publishing queue | Node, offline faster-whisper, ffmpeg and ffprobe | **Built.** Automatic publishing is switched off |
+| **YouTube publishing** | Uploads one approved clip at a time, as private, unlisted or public | YouTube Data API v3 (desktop OAuth with PKCE, resumable upload), Windows DPAPI | **Built and connected** (2026-11-09). 5 clips from one talk are public, per the project's records |
+| **Stream Studio** | Topic folders and playlist names for future streams, offline clip ideas, and an automatic publishing queue | Node, Python with offline faster-whisper, ffmpeg and ffprobe | **Built.** Automatic publishing is off by default and was last recorded off on 2026-11-09 |
 | **Research connector** | Lets phone assistants save study checkpoints and read the synced research | A hosted serverless worker with object storage, MCP over HTTP, a separate scoped gateway for Claude | **Built; deployed** per its README (2026-11-11). Not re-checked for this page |
 | **Study-guide publisher** | Publishes the class's visual study guide as a public website, one explicit click at a time | Node, the Vercel CLI, static HTML and JS | **Live.** Last edition published 2026-11-19; the site answered HTTP 200 on 2026-11-21 |
 | **Show export** | Turns short teaching cards I approve into a show file for my Live Presenter, used in classes and streams | Node, Markdown cards, SVG doodles, a JSON show format | **Built.** 19 cards, 2 exported shows |
@@ -87,22 +87,30 @@ On 2026-11-21 the Studio was listening on 127.0.0.1.
 
 ## Publishing to YouTube, only with approval
 
-- **Approval seals the clip.** Approving records the video's SHA-256 hash and size together with the exact title and caption. Before an upload, the Studio checks all four again and re-reads the approval after hashing (excerpt 1).
-- **A separate, explicit button.** Visibility is chosen each time, and "made for kids" must be chosen explicitly.
-- **Secrets stay encrypted.** The OAuth client and tokens are encrypted with Windows DPAPI for the current user, so only encrypted bytes reach disk.
-- Uploads are resumable, with a 256 MB cap per clip. Duplicate clicks and uncertain results are blocked instead of retried blindly. Playlist access, a broader permission, is asked for only when I choose it.
+My standing preference since 2026-11-22: new clips go to the Gate and start undecided. I review the exact cut and wording before approving, and I choose when to upload.
 
-The project's README says the Google Cloud project moved to production on 2026-11-09 and the channel was connected.
+- **Approval seals the clip.** Approving records the video's SHA-256 hash and size together with the exact title and caption. Before an upload, the Studio checks all four again and re-reads the approval after hashing (excerpt 1).
+- **The private part stays private.** The same check refuses a clip that runs past the talk's public end, a clip that does not record where it comes from, a talk with no public end recorded, and any file that resolves outside its talk folder.
+- **A separate, explicit button.** In the Gate, saving an approval never starts an upload; only the upload button does. Visibility is chosen each time, and "made for kids" must be chosen explicitly.
+- **Secrets stay encrypted.** Sign-in is Google's desktop OAuth with PKCE. By default it asks only for upload and read-only channel access. The OAuth client and tokens are encrypted with Windows DPAPI for the current user, so only encrypted bytes reach disk.
+- Uploads are resumable, in 8 MiB chunks, with a 256 MB cap per clip. After a temporary connection problem the Studio continues the same upload session. Duplicate clicks are blocked, and an uncertain result is marked for review and never uploaded a second time automatically. Playlist access, a broader permission, is asked for only when I choose it.
+
+Connections made while a Google app is in Testing expire after seven days. The Studio's README says the Google Cloud project moved to production on 2026-11-09 and the channel was connected again, so that limit no longer applies.
+
+One fix along the way (2026-11-17): when Codex's desktop app started the Studio, Windows redirected its app-data folder into Codex's private package folder, so the Studio opened from the desktop shortcut saw no YouTube connection and no upload history. The YouTube connection, upload history, research connection and Stream Studio's registry now live in one folder in my Windows user profile. The 8 saved files were copied across and their hashes matched.
 
 ## Stream Studio: topics and the publishing queue
 
-Stream Studio is for future recordings beyond Kingdom Within. Each topic has its own folder and YouTube playlist; there are two topics so far.
+Stream Studio is the workspace for future recordings, sorted by topic. It started on 2026-11-09 with two topics, Kingdom Within and General Streaming, and a third was added on 2026-11-23. The Studio now shows each topic as a project. Each topic has its own folder and a matching YouTube playlist name. Saving the name creates nothing: the queue reuses a matching playlist, or creates one, only when it is about to send an approved clip.
 
-- It imports a finished recording by reference and SHA-256 fingerprint, without moving the original.
-- It proposes clip ideas from a transcript made offline (faster-whisper, local `base.en` model, no downloads), and renders landscape or vertical clips with ffmpeg.
-- **The automatic publishing queue** stores, for each item, the approved fingerprint and wording, the channel, visibility, audience and playlist rule. A changed approval or route blocks the old item. Turning the queue on does not send older approvals, and pausing stops new dispatches. A local OS pipe, not a lock file, guards against two copies publishing at once.
+- It imports a finished recording by reference, recording its size, modification time and SHA-256 hash, and never moves the original. A recording that is still changing is refused, and clips are refused if the original has changed since import.
+- It proposes clip ideas from a transcript made offline (faster-whisper, local `base.en` model, no downloads), and renders landscape or vertical clips with ffmpeg. The ideas are draft speech passages, not a ranking of the best moments or verified captions.
+- **The automatic publishing queue** stores, for each item, the approved fingerprint and wording, the channel, visibility, audience and playlist rule. A changed approval or route blocks the old item. Before each send it checks again that the chosen channel is connected, playlist access was granted, the topic's playlist and audience settings are unchanged and the sealed approval still matches. It sends one clip at a time.
+- **Turning it on starts a new session.** Each switch-on gets a new session ID, and only approvals saved after that are queued, so older approvals and paused items never resume on their own. Pausing stops new dispatches; an upload already sent can finish. While any upload result is uncertain, the queue sends nothing more.
+- A local OS pipe, not a lock file, guards against two copies publishing at once.
+- The Studio must be running for the queue to work, and there is no folder watcher.
 
-**Status:** built and switched off. The queue's starting state is `enabled: false`, and the README recorded it still off on 2026-11-09, with no clips queued.
+**Status:** built, with automatic publishing off by default. The queue's starting state is `enabled: false`. The README recorded playlist access connected on 2026-11-09 and automatic publishing still off, with no clips queued and no topic playlists created. I did not read the live queue settings for this page.
 
 ## The research connector
 
@@ -114,7 +122,7 @@ A private inbox between my phone assistants (ChatGPT and Claude) and the study r
 - Claude reaches it through a separate, scoped gateway that checks a hashed client key.
 - The Studio's "Sync research" button is the explicit step that moves handoffs into the repository and the research snapshot up to the connector.
 
-**Status:** built and deployed according to its README of 2026-11-11, which records the tools working from ChatGPT, a partial handoff and a Studio sync succeeding, and the Claude gateway listing all six tools with a research read passing. A full Claude read and save was not yet verified then, and phone voice use was untested. On 2026-11-21 the six tools were listed in a Claude session's tool list; I did not call them for this page.
+**Status:** built and deployed according to its README of 2026-11-11, which records the tools working from ChatGPT, a partial handoff and a Studio sync succeeding, and Claude showing all six tools through the gateway, with the gateway's key check, handoff reads and a repeated save of an existing checkpoint passing as direct service checks. A full Claude read and save was not yet verified then, and phone voice use was untested. On 2026-11-21 the six tools were listed in a Claude session's tool list; I did not call them for this page.
 
 ## How it connects to Michael
 
@@ -189,7 +197,7 @@ Line counts are raw (comments and blank lines included). Test counts are counted
 - **No tests were run for this page.** The numbers above are counts; the last recorded Studio run is the README's 99 passing on 2026-11-09.
 - **The count of public clips comes from the project's own records.** I did not check it on YouTube.
 - **The research connector's deployment rests on its README of 2026-11-11.** A full Claude read and save was unverified at that date, and phone voice use was untested.
-- **Automatic publishing is built and switched off.** As of the README's note of 2026-11-09, nothing had gone through the queue.
+- **Automatic publishing is built and off by default.** The last record, the README's note of 2026-11-09, has it off with nothing queued. I did not read the live queue settings.
 - **The code history is short because of how it was backed up.** The Studio's private backup holds a single snapshot commit from 2026-11-20, and the connector's 8 commits are all from one day, so neither history shows how long the work took.
 - **Michael's snapshot freshness was not checked** against the latest study commits.
 

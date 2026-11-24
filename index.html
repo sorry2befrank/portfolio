@@ -237,10 +237,10 @@
     <div class="system" style="margin-top:22px;">
       <span class="ref">WHAT THE IDEA NEEDS · WHAT RUNS TODAY</span>
       <ul>
-        <li><strong>Say what it cannot prove:</strong> the Orrery runs every night with 2,045 tests, and today reports 0 of 11 flows fully verified rather than pretending.</li>
-        <li><strong>Earn every permission:</strong> the Understudy starts read-only and earns each rung on a record someone else checks; 150 adjudications, none confirmed false.</li>
+        <li><strong>Say what it cannot prove:</strong> the Orrery runs its full test suite every night (2,213 tests on 2026-11-23), and that day it reported 0 of 11 flows fully verified rather than pretending.</li>
+        <li><strong>Earn every permission:</strong> the Understudy starts read-only and must earn each rung on a record someone else checks (one rung so far was granted by me, and is labelled so); 150 adjudications, none confirmed false.</li>
         <li><strong>Remember with sources:</strong> the Knowledge Library, in a supervised pilot; its public code has 1,805 tests in CI.</li>
-        <li><strong>Keep each person's data apart:</strong> per-customer isolation in the agent runtime, and row-level security on every table in Authors Codex.</li>
+        <li><strong>Keep each person's data apart:</strong> tenant-scoped knowledge in the agent runtime, and row-level security on every table in Authors Codex.</li>
         <li><strong>Ownership, today:</strong> the data, memory and rules are mine and portable; the models are rented and swappable.</li>
       </ul>
     </div>
@@ -278,7 +278,7 @@
         <span class="k">THE HUB</span>
         <h3>The Gathering</h3>
         <div class="role">Built · Supabase, row-level security on every table</div>
-        <p>An open forum: no sign-up to read or post. Honest status: on 2026-11-21 it did not load for visitors because its database backend was unreachable; it needs restoring.</p>
+        <p>An open forum: no sign-up to read or post. Honest status: in a live check on 2026-11-21 it did not load for visitors, because the page could not reach its database backend; it has not been re-checked since.</p>
       </div>
       <div class="lobe">
         <span class="k">THE GAME</span>
@@ -305,7 +305,7 @@
         <span class="k">MEDIA &amp; REACH</span>
         <h3>Studio &amp; engine</h3>
         <div class="role">Built · studio local-only</div>
-        <p>The <a data-goto="studio" href="#" style="color:var(--brass);border-bottom:1px solid var(--hairline);">Production Studio</a> makes the art and trailers. A campaign engine drafts daily posts into an approval queue and builds ads paused; only Bluesky can post on its own, and only when armed.</p>
+        <p>The <a data-goto="studio" href="#" style="color:var(--brass);border-bottom:1px solid var(--hairline);">Production Studio</a> makes the art and trailers. A campaign engine drafts daily posts into an approval queue and builds ads paused; nothing posts on its own until the engine is armed.</p>
       </div>
     </div>
 
@@ -321,9 +321,9 @@
         <ul>
           <li><strong>Live, public:</strong> the site and codex (open mode), the films, the gallery, the Lane and the Fourthwall store.</li>
           <li><strong>Member-gated:</strong> The Path, the lore chat, and 1 early-access chapter (6 chapters are free to read).</li>
-          <li><strong>Built, not loading today:</strong> the Gathering, until its backend is restored.</li>
+          <li><strong>Built, did not load on 2026-11-21:</strong> the Gathering; I will not call it live again until a check shows it loading.</li>
           <li><strong>Built, local-only:</strong> the Studio. <strong>Not built:</strong> forum threads tied to codex entries.</li>
-          <li><strong>Tests run 2026-11-21:</strong> 161 combat, 24 release, 3 lore-gate and 5 game-beta, 103 campaign engine, all passing. The 103 Godot test files were counted, not run.</li>
+          <li><strong>Tests run 2026-11-21:</strong> 161 combat, 24 release, 3 lore-gate and 5 game-beta, all passing. The 103 Godot test files were counted, not run, and the campaign engine's 101 declared tests were counted on 2026-11-23, not run.</li>
         </ul>
       </div>
     </div>
@@ -370,7 +370,7 @@
         <span class="ref">HOW MY DATA IS PROTECTED</span>
         <ul>
           <li><strong>Local-first:</strong> entries, goals, dreams and the embeddings live in my browser. The server is a thin set of API routes and keeps no user database.</li>
-          <li><strong>One user, one signed cookie:</strong> every API route needs an HMAC-signed session. On 2026-11-21 the pages answered and the API routes refused anyone without a session.</li>
+          <li><strong>One user, one signed cookie:</strong> every API route except the unlock handshake needs an HMAC-signed session. On 2026-11-21 the pages answered and the API routes refused anyone without a session.</li>
           <li><strong>Consent by source:</strong> the Guide reads only the source areas I select, out of 14, and only from the app's own typed stores.</li>
           <li><strong>A safety screen that fails closed:</strong> reflective text is screened before it reaches a model, and any error counts as a positive. A monthly AI budget pause never switches the screen off.</li>
           <li><strong>A vault I control:</strong> export is a full backup that always leaves out anything that looks like a key or secret; import only adds what is missing.</li>
@@ -383,8 +383,8 @@
         <span class="ref">WISDOM SOURCE · ITS OWN APP</span>
         <h3>The Interfaith Library</h3>
         <div class="role">Live · React 19, Vite, D3 · <a href="https://interfaith-library.vercel.app/" target="_blank" rel="noopener" style="color:var(--brass);border-bottom:1px solid var(--hairline);">interfaith-library.vercel.app</a></div>
-        <p>A comparative encyclopedia of concepts, symbols, figures and practices: each entry leads with what the traditions share, then gives a view for each of 10 traditions and 4 non-religious lenses, with sourced quotes. 117 entries are live; a 124-entry version is built and not yet deployed.</p>
-        <p>Michael draws a corpus of 1,820 passages from it, and the build drops any quote whose wording is not verified. When the Guide proposes verses for the day, the code throws away the model's wording and refills each verse <strong>by reference</strong> from the real pool. If fewer than two traditions remain, nothing is shown.</p>
+        <p>A comparative encyclopedia of concepts, symbols, figures and practices: each entry leads with what the traditions share, then gives a view for each of 10 traditions, with sourced quotes, and an entry can add views through 4 non-religious lenses. 117 entries are on the main branch the public site deploys from; a 124-entry version is built and not yet merged.</p>
+        <p>Michael draws a corpus of 1,820 passages from it: a separate script drops every quote left blank, relying on the library's rule that a quote stays blank until its wording is verified. When the Guide proposes verses for the day, the code throws away the model's wording and refills each verse <strong>by reference</strong> from the real pool. If fewer than two traditions remain, nothing is shown.</p>
         <div class="tags"><span class="tag">Verbatim-quote gate</span><span class="tag">43,722-verse index</span><span class="tag">In-memory vector search</span><span class="tag">No-fabrication refill</span></div>
       </div>
     </article>
@@ -395,7 +395,7 @@
         <h3>Cosmic Blueprint</h3>
         <div class="role">Live · public first screens · <a href="https://www.cosmic-blueprint.org" target="_blank" rel="noopener" style="color:var(--brass);border-bottom:1px solid var(--hairline);">cosmic-blueprint.org</a></div>
         <p><em>"Cosmic Blueprint is the seed that I'm using in order to help someone else build their own personalized system that they can explore their own self in order to be successful in their regular day life."</em> Spoken, 2026-11-21.</p>
-        <p>A visitor does not start from my goals. The first screen asks one question, "What would you like to make room for in your life?", and an optional birth sky is offered as a lens, not a verdict. Members get an assessment that places them on three mountains, a map of their own, goals, a journal and a Guide with a memory they can see and edit. Each account holds only its owner's data under row-level security, and every AI call passes one database check-and-charge that denies the call on any failure. Its Guide reuses Michael's design; the two share no code or data.</p>
+        <p>A visitor does not start from my goals. The first screen asks one question, "What would you like to make room for in your life?", and an optional birth sky is offered as a lens, not a verdict. Members get an assessment that places them on three mountains, a map of their own, goals, a journal and a Guide with a memory they can see and edit. Each account holds only its owner's data under row-level security, and every AI call passes one database check-and-charge that denies the call on any failure. Its older reflective Guide reused Michael's design and is switched off in production, where members talk to its newer Guide conversation; the two share no code or data.</p>
         <div class="tags"><span class="tag">Supabase RLS</span><span class="tag">Server-side plan checks</span><span class="tag">Fail-closed cost breaker</span><span class="tag">Stripe</span><span class="tag">PWA</span></div>
       </div>
       <figure class="shot"><a href="https://www.cosmic-blueprint.org" target="_blank" rel="noopener"><img src="img/cosmic-blueprint-seed.jpg" width="1366" height="860" alt="The Cosmic Blueprint first screen: a painted mountain range at dusk, a glowing labyrinth with 'Plant this seed', and the question 'What would you like to make room for in your life?'" loading="lazy" /></a><figcaption>The public first screen at desktop width, 2026-11-21. Nothing was typed or submitted.</figcaption></figure>
@@ -427,7 +427,7 @@
   <section class="panel" id="working" role="tabpanel">
     <span class="eyebrow kicker">Systems Integrator · Governed &amp; Observable AI</span>
     <h1>I build governed AI systems — and I run my own operation on <em>one of them</em>.</h1>
-    <p class="lead"><strong>I don't just build AI systems for clients; I run my own studio on one I built.</strong> Three layers: an atlas that maps the operation and names where each workflow breaks, a console where I decide, and an engine that does bounded work. It is built so that consequential actions wait for a human, and my agency console's inability to send or deploy is checked by an automated test that scans its runtime source.</p>
+    <p class="lead"><strong>I don't just build AI systems for clients; I run my own studio on one I built.</strong> Three layers: an atlas that maps the operation and names where each workflow breaks, a console where I decide, and an engine that does bounded work. It is built so that consequential actions wait for a human, and an automated test scans my agency console's runtime source for any send or deploy call.</p>
 
     <figure class="hero-shot">
       <img src="img/atlas-systemmap.png" alt="The Orrery System Atlas — a live system map of 56 components across 8 layers, with 11 governed end-to-end workflows and per-component state." loading="lazy" />
@@ -436,7 +436,7 @@
 
     <figure class="hero-shot" style="margin-top:22px;">
       <img src="img/flows-break.png" alt="The diagnosis view — each governed workflow shown as verified end-to-end or unproven at a specific step, with the evidence source and the next check." loading="lazy" />
-      <figcaption>Where the flows break — the diagnosis engine names the first unproven step in each workflow (the screenshot above shows one such break), cites the evidence, and states the next check. It never marks a step "working" without a receipt.</figcaption>
+      <figcaption>Where the flows break — the diagnosis engine names the first unproven step in each workflow (the screenshot above shows one such break), cites the evidence, and states the next check. It never marks a step "working" without a record that proves it.</figcaption>
     </figure>
 
     <div class="triad">
@@ -444,25 +444,25 @@
         <span class="k">OBSERVE</span>
         <h3>The Atlas</h3>
         <div class="role">Workflow observability &amp; diagnosis</div>
-        <p>Models the whole operation as a typed graph and computes its <em>real</em> health from run logs — flow efficiency, rework rate, first-pass yield — then names the exact step that broke and ties it to evidence. What it can't measure it marks <em>unobserved</em>, never guessed.</p>
+        <p>Models the whole operation as a typed graph and computes its <em>real</em> health from run logs — flow efficiency, rework rate, first-pass yield — then names the first step where work stopped and ties it to evidence. What it can't measure it marks <em>unobserved</em>, never guessed.</p>
       </div>
       <div class="lobe">
         <span class="k">COMMAND</span>
         <h3>The Console</h3>
-        <div class="role">Governed ops surfaces; one is send-incapable by test</div>
-        <p>One place to see every source of truth and decide — composited through a single adapter layer, behind signed auth. The agency console is <em>structurally incapable</em> of sending or deploying: an automated test scans every runtime source file and fails the build if one mentions mail transport, a child-process API, a git library, or a deploy. (The Orrery console itself can start bounded local work orders, so I do not make that claim for it.) A human decides; the surface can't act by accident.</p>
+        <div class="role">Governed ops surfaces; one is scanned by a test for send calls</div>
+        <p>One place to see every source of truth and decide — composited through a single adapter layer, behind signed auth. The agency console is built with <em>no send or deploy path</em>: an automated test scans every runtime source file and fails the test run that comes before a build if one mentions mail transport, a child-process API, a git library, or a deploy. The test reads the console's own code, not its dependencies or what it does at runtime. (The Orrery console itself can start bounded local work orders, so I do not make that claim for it.) A human decides.</p>
       </div>
       <div class="lobe">
         <span class="k">EXECUTE</span>
         <h3>The Armillary</h3>
         <div class="role">Bounded overnight execution engine</div>
-        <p>Turns approved intent into bounded work orders and runs them overnight — each repair isolated in a git worktree, gated by default-deny policy, a circuit breaker, per-job budgets, and a local Ollama juror. Real file-and-line evidence before a human promotes anything. Honest status: across 35 attempts, the unattended repair lane has not yet landed a verified repair.</p>
+        <p>Turns approved intent into bounded work orders and runs them overnight — each repair isolated in a git worktree, gated by a default-deny write policy, per-lane and global circuit breakers and a timeout on every run. In the Rehearsal, where agents practise on real blocked items, a jury with a local Ollama model judges the result. Real file-and-line evidence before a human promotes anything. Honest status: as of 2026-11-23, across 38 attempts, the unattended repair lane has not yet landed a verified repair.</p>
       </div>
     </div>
 
     <figure class="hero-shot" style="margin-top:26px;">
-      <img src="img/agency-console.png" alt="The operations command console — the owner decision queue (outreach, inbound, decisions, replies) on one governed surface, structurally incapable of sending or deploying." loading="lazy" />
-      <figcaption>COMMAND — the agency console: everything that needs the owner's decision in one place, behind signed auth. Built with no send or deploy path, and tests check that — a human decides; the surface can't act.</figcaption>
+      <img src="img/agency-console.png" alt="The operations command console — the owner decision queue (outreach, inbound, decisions, replies) on one governed surface, built with no send or deploy path." loading="lazy" />
+      <figcaption>COMMAND — the agency console: everything that needs the owner's decision in one place, behind signed auth. Built with no send or deploy path, and a test scans its own source for one — a human decides.</figcaption>
     </figure>
 
     <figure class="hero-shot" style="margin-top:22px;">
@@ -521,10 +521,10 @@
         <div class="role">Live Presenter · Stream Hub · clip pipeline · approval gate · all local</div>
         <p><em>"In creation, I have the daily shorts lane where I've made a live presenter. And clip up streams that I do on TikTok."</em> Spoken, 2026-11-21.</p>
         <ul>
-          <li><strong>Live Presenter</strong> — Markdown decks with private desk notes, a clean audience window for Zoom, or a wide or tall OBS stage. It listens on 127.0.0.1 with a desk token made fresh at each launch, and the stage never receives the notes. My class tool since 2026-11-02; 465 tests passing at its last recorded run that day.</li>
+          <li><strong>Live Presenter</strong> — Markdown decks with private desk notes, a clean audience window for Zoom, or a wide or tall OBS stage. It listens on 127.0.0.1 with a desk token made fresh at each launch, and the stage never receives the notes. Chosen on 2026-11-02 as the tool for my public AI classes, the first of which is on 2026-12-13; 465 tests passing at its last recorded run that day.</li>
           <li><strong>Stream Hub</strong> — one local page that starts and stops Kick, Twitch and the recording through OBS in a fixed order, blocks the whole start if setup is missing, and keeps stream keys encrypted with Windows DPAPI. TikTok streams run through TikTok LIVE Studio, started by hand.</li>
-          <li><strong>Clip pipeline</strong> — a long stream recording in, short vertical captioned clips out: transcripts, three separate judges per candidate, cuts snapped to real dips in the audio, loudness at -14 LUFS. Proven on one 98-minute stream: 28 candidates, 11 held back because another person appears in them, 6 rendered.</li>
-          <li><strong>Approval gate</strong> — Live &amp; Clips seals an approved clip by its SHA-256 hash, size, title and caption, and any change blocks the upload. Automatic publishing is built and switched off.</li>
+          <li><strong>Clip pipeline</strong> — a long stream recording in, short vertical captioned clips out: transcripts, three separate judges per candidate, cuts snapped to real dips in the audio, loudness at -14 LUFS. Run once so far, on one 98-minute stream: 28 candidates, 11 held back because another person appears in them, 6 rendered and waiting for my picks.</li>
+          <li><strong>Approval gate</strong> — Live &amp; Clips seals an approved clip by its SHA-256 hash, size, title and caption, and any change blocks the upload. Automatic publishing is built and off by default.</li>
         </ul>
         <div class="tags"><span class="tag">Server-sent events</span><span class="tag">obs-websocket</span><span class="tag">faster-whisper</span><span class="tag">ffmpeg + libass</span><span class="tag">Hash-sealed approval</span><span class="tag">MCP plugin (beta)</span></div>
         <div class="cta-row" style="margin-top:22px;">
@@ -549,8 +549,8 @@
       <div class="system-body">
         <span class="ref">SYSTEM · MULTI-TENANT AI PLATFORM</span>
         <h3>Agent runtime &amp; app engine for real tenants</h3>
-        <div class="role">Manifest-driven · structurally isolated · human-gated</div>
-        <p>A manifest-driven runtime where agents are configuration data over one fixed, reviewed execution loop, with every model call going through a single metered client. Each tenant's private knowledge sits in its own index, apart from the shared corpus, so a lookup for one client does not draw on another's. A companion app-builder runs generated apps in isolated previews (E2B, or local containers with no internet egress) and keeps encrypted secrets out of prompts and logs. A human reviews the live preview and approves an exact commit before anything merges; the builder has no deploy or force-push path.</p>
+        <div class="role">Manifest-driven · tenant-scoped · human-gated</div>
+        <p>A manifest-driven runtime where agents are configuration data over one fixed, reviewed execution loop, with every Claude call in the engine going through a single metered client. Each tenant's private knowledge sits in its own scope, apart from the shared commons, and a test checks that one tenant's lookup returns none of another tenant's rows. A companion app-builder runs generated apps in isolated previews (E2B, or local containers with no internet egress) and keeps encrypted secrets out of prompts and logs. A human reviews the live preview and approves an exact commit before anything merges; the builder has no deploy or force-push path.</p>
         <div class="tags"><span class="tag">Manifest-driven runtime</span><span class="tag">Per-tenant knowledge index</span><span class="tag">E2B / isolated previews</span><span class="tag">Per-call metering</span><span class="tag">Human merge gate</span></div>
       </div>
     </article>
@@ -560,8 +560,8 @@
         <span class="ref">SYSTEM · AUTHORS CODEX</span>
         <h3>Authors Codex — relational workspace for novelists</h3>
         <div class="role">My own product · web app, private by default, AI-assisted</div>
-        <p>A web workspace that unifies a manuscript, a linked character bible, a story map, and art into one place. Data is <strong>relational</strong> — characters, places, and events link to the chapters that reference them — every row is gated to its author by Postgres row-level security, AI intake is structured rather than free-form, and a whole project exports as one portable JSON bundle. Proof I can model real relational data and ship a multi-tenant web product with privacy enforced in the database.</p>
-        <div class="tags"><span class="tag">Next.js / TypeScript</span><span class="tag">Supabase / Postgres RLS</span><span class="tag">Relational data model</span><span class="tag">Structured AI intake</span><span class="tag">Full-project JSON export</span></div>
+        <p>A web workspace that unifies a manuscript, a linked character bible, a story map, and art into one place. Data is <strong>relational</strong> — characters, places, objects and lore link to each other, and each can name the chapter that introduces it — every row is gated to its author by Postgres row-level security, AI intake is structured rather than free-form, and a project's story records export as one JSON file. Proof I can model real relational data and ship a multi-tenant web product with privacy enforced in the database.</p>
+        <div class="tags"><span class="tag">Next.js / TypeScript</span><span class="tag">Supabase / Postgres RLS</span><span class="tag">Relational data model</span><span class="tag">Structured AI intake</span><span class="tag">Project JSON export</span></div>
       </div>
       <figure class="shot"><img src="img/authors-codex.png" alt="Authors Codex — a private workspace for characters, world, manuscript, and notes." loading="lazy" /><figcaption>Authors Codex — live at <a href="https://authors-codex.vercel.app" target="_blank" rel="noopener" style="color:var(--brass);border-bottom:1px solid var(--hairline);">authors-codex.vercel.app</a></figcaption></figure>
     </article>
@@ -571,8 +571,8 @@
         <span class="ref">SYSTEM · APP RESCUE</span>
         <h3>Existing App Rescue</h3>
         <div class="role">Production repair</div>
-        <p>A live, client-owned app needed a core business-logic path rebuilt. I diagnosed the app's <em>actual</em> data and workflow state (not just its schema), rebuilt that path, and shipped the repair to production — then continued with bounded feature and maintenance work while preserving what the owner depended on. Map the system, preserve working behavior, fix the root cause, leave tests and docs. It grew into ongoing paid work.</p>
-        <div class="tags"><span class="tag">Application takeover</span><span class="tag">Data-state diagnosis</span><span class="tag">Regression control</span><span class="tag">Clean handoff</span></div>
+        <p>A live, client-owned app needed a core business-logic path rebuilt. I diagnosed the app's <em>actual</em> data and workflow state (not just its schema), rebuilt that path, and shipped the repair to production after checking it against an independent calculation. Map the system, preserve working behavior, fix the root cause, prove the fix, and back up before any live change. It grew into ongoing paid work.</p>
+        <div class="tags"><span class="tag">Application takeover</span><span class="tag">Data-state diagnosis</span><span class="tag">Regression control</span><span class="tag">Independent recalculation</span></div>
       </article>
       <article class="card">
         <span class="ref">SYSTEM · RANGE</span>
@@ -585,7 +585,7 @@
 
     <div class="caps">
       <div class="cap"><span class="num">01</span><h4>Governed AI systems</h4><p>Agents and pipelines with the safety designed in: default-deny boundaries, human-approval gates, kill switches, isolation, and an audit trail — checked by tests, not just asserted.</p></div>
-      <div class="cap"><span class="num">02</span><h4>Observability &amp; reliability</h4><p>I compute a system's real health from its logs, pinpoint exactly where a multi-step pipeline breaks with evidence, and hold what I can't measure as unobserved rather than guessed.</p></div>
+      <div class="cap"><span class="num">02</span><h4>Observability &amp; reliability</h4><p>I compute a system's real health from its logs, point to the first step where a multi-step pipeline stops, with evidence, and hold what I can't measure as unobserved rather than guessed.</p></div>
       <div class="cap"><span class="num">03</span><h4>Systems integration</h4><p>Many independent tools and data systems composited into one coherent operating surface — the same instinct I used integrating electrical and instrumentation hardware on rocket programs, in software.</p></div>
       <div class="cap"><span class="num">04</span><h4>Full-stack, concept → production</h4><p>TypeScript / Next.js and Python, Supabase / Postgres, Vercel — typed, authed, tested, documented, handed off cleanly. Claude + local Ollama + Codex as a cross-model verification loop.</p></div>
     </div>
